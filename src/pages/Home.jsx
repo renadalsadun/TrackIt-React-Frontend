@@ -1,8 +1,14 @@
 import React from 'react'
 
+import TrackerList from '../components/TrackerList/TrackerList'
+
 function Home() {
     return (
-        <h2>Home Page</h2>
+        <>
+            <h2>Home Page</h2>
+            <TrackerList />
+
+        </>
     )
 }
 

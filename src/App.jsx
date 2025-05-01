@@ -11,7 +11,7 @@ function App() {
     <h1>Welcome to App </h1>
     <Router>
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/Home' element={<Home />} />
         </Routes>
       </Router>
 
