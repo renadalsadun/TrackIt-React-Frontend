@@ -5,7 +5,6 @@ import React, { use, useState } from 'react'
 function TrackerForm(props) {
 
 
-    //name
 
     return ( // challenge 1: fields list
         <div>
