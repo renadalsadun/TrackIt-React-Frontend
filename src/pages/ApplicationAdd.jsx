@@ -31,12 +31,20 @@ function ApplicationAdd() {
     async function handleSubmit(event){
         event.preventDefault()
         const payload = { ...formFields, tracker:trackerId }
+        console.log('Payload being sent:', payload) // <-- add this
         const url = 'http://127.0.0.1:8000/api/applications/new/'
-        const response = await axios.post(url, payload)
-        console.log(response)
+        try{
+            const response = await axios.post(url, payload)
+        }
+        catch (error){
+            console.error("Server error:", error.response?.data || error.message)
+
+        }
+
     }
 
 
+// formTitle handleSubmit fields DATE_FIELDS formFields setFormFields submitButtonText
 
     return (
     <div>
