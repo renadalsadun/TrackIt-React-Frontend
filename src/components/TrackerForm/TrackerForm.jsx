@@ -1,9 +1,17 @@
 import React, { use, useState } from 'react'
+import { useNavigate } from 'react-router'
 
 
 
 function TrackerForm(props) {
 
+
+
+    const navigate = useNavigate()
+
+    function handelCancel(){
+        navigate(-1)
+    }
 
 
     return ( // challenge 1: fields list
@@ -56,6 +64,7 @@ function TrackerForm(props) {
                 </div>
 
                 <button type='submit'>{props.submitButtonText}</button>
+                <button onClick={handelCancel}>Cancel</button>
 
             </form>
         </div>
