@@ -8,6 +8,8 @@ function ApplicationForm(props) {
 
 
 
+    const navigate = useNavigate() //there is an issue here i guess, maybe because i didnot use buttons 
+
 
     function handelCancel(){
         navigate(-1)
@@ -28,13 +30,16 @@ function ApplicationForm(props) {
                                 <>
                                     <label htmlFor={field}>{field} </label>
                                     <select
-                                    value = {props.formFields[field]}
-                                    onChange={event =>
-                                        props.setFormFields({
-                                            ...props.formFields,
-                                            [field]: event.target.value
-                                        })
-                                    }
+                                        id={field}
+                                        name={field}
+                                    
+                                        value = {props.formFields[field]}
+                                        onChange={event =>
+                                            props.setFormFields({
+                                                ...props.formFields,
+                                                [field]: event.target.value
+                                            })
+                                        }
                                     >
                                     <option value="C">Critical</option>
                                     <option value="H">High</option>

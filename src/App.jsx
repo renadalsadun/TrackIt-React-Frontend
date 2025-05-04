@@ -6,6 +6,7 @@ import TrackerDetail from './pages/TrackerDetail'
 import TrackerAdd from './pages/TrackerAdd'
 import TrackerUpdate from './pages/TrackerUpdate'
 import ApplicationAdd from './pages/ApplicationAdd'
+import ApplicationUpdate from './pages/ApplicationUpdate'
 
 
 
@@ -20,7 +21,7 @@ function App() {
           <Route path='trackers/add' element={<TrackerAdd/>}/>
           <Route path='trackers/:id/edit' element={<TrackerUpdate/>}/>
           <Route path='trackers/:trackerId/applications/new' element={<ApplicationAdd/>}/>
-          <Route path='trackers/:trackerId/applications/:applicationId' element={<TrackerUpdate/>}/>
+          <Route path='trackers/:trackerId/applications/:applicationId/edit' element={<ApplicationUpdate/>}/>
         </Routes>
       </Router>
 
