@@ -6,30 +6,12 @@ import { useNavigate , useParams } from 'react-router'
 
 function ApplicationForm(props) {
 
-    const DATE_FIELDS = [ 'date_applied' , 'deadline' , 'interview_date' , 'start_date' , 'end_date' ]
-    const { trackerId } =  useParams() //trackerid
-    const navigate = useNavigate()
-    const [formFields, setFormFields] = useState({})
-    let fields = []
 
 
 
     function handelCancel(){
         navigate(-1)
     }
-
-
-    async function getFields(){
-        //get the tracker object using id
-        //get its fields attr
-        const response = await axios.get(`http://127.0.0.1:8000/api/trackers/${trackerId}`)
-        fields = response.data.fields
-        console.log(fields)
-    }
-
-
-    useEffect( () => 
-        { getFields() } ,[] )
 
 
 
@@ -39,17 +21,17 @@ function ApplicationForm(props) {
             <form onSubmit={props.handleSubmit}>
                 {
                     
-                    fields.map(field =>{
-                        const type = DATE_FIELDS.includes(field) ?  'date' : 'text'
+                    props.fields.map(field =>{
+                        const type = props.DATE_FIELDS.includes(field) ?  'date' : 'text'
                         if (field === 'priority'){
                             return(
                                 <>
                                     <label htmlFor={field}>{field} </label>
                                     <select
-                                    value = {formFields[field]}
+                                    value = {props.formFields[field]}
                                     onChange={event =>
-                                        setFormFields({
-                                            ...formFields,
+                                        props.setFormFields({
+                                            ...props.formFields,
                                             [field]: event.target.value
                                         })
                                     }
@@ -71,10 +53,10 @@ function ApplicationForm(props) {
                                 name={field}// as our django app expects!
                                 type = {type}
                                 required
-                                value={formFields[field]}
+                                value={props.formFields[field]}
                                 onChange={event =>
-                                    setFormFields({
-                                        ...formFields,
+                                    props.setFormFields({
+                                        ...props.formFields,
                                         [field]: event.target.value
                                     })
                                 }
