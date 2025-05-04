@@ -4,6 +4,7 @@ import axios from 'axios'
 import TrackerForm from '../components/TrackerForm/TrackerForm'
 import { useParams } from 'react-router'
 import { useEffect } from 'react'
+import { useNavigate } from 'react-router'
 
 
 //// need to handel the user
@@ -18,6 +19,7 @@ function TrackerUpdate(props) {
     const { id } = useParams()
     const [name, setName] = useState('')
     const [checkedFields , setCheckedFields] = useState([])
+    const navigate = useNavigate()
 
 
 
@@ -44,6 +46,7 @@ function TrackerUpdate(props) {
         const url = `http://127.0.0.1:8000/api/trackers/${id}/update/`
         const response = await axios.patch(url, payload)
         console.log(response)
+        navigate(`/trackers/${id}`)
     }
 
 
