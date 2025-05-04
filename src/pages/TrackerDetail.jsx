@@ -40,6 +40,12 @@ function TrackerDetail() {
 
 
 
+    function navigateToEditTracker(){
+        navigate(`/trackers/${id}/edit`)
+    }
+
+
+
     async function deleteTracker() {
         //get the post from the API
         // `http://127.0.0.1:8000/api/trackers/${id}/delete/`
@@ -82,11 +88,11 @@ function TrackerDetail() {
 
                         }
 
-                        <button>Edit</button>
+                        <button onClick={navigateToEditTracker}>Edit</button>
 
                     </>
                 ) :
-                (<h1>Loading Your Tracker</h1>)
+                (<h1>Loading ...</h1>)
             }
 
         </>
