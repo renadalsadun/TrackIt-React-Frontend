@@ -24,10 +24,12 @@ function TrackerDetail() {
          *  if the Tracker doesn't exist, navigate to not found page
          */
 
-        // we will get a Promise instead of the result if we did not use async
-        // and to solve CORS issue add to django ()
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/api/trackers/${id}`)
+            const response = await authorizedRequest(
+                'get',
+                `trackers/${id}/`
+            )
+    
             console.log(response)
             setTracker(response.data)
         }
@@ -62,7 +64,11 @@ function TrackerDetail() {
          */
         //get the post from the API
         try {
-            const response = await axios.delete(`http://127.0.0.1:8000/api/trackers/${id}/delete/`)
+            const response = await authorizedRequest(
+                'delete',
+                `trackers/${id}/delete/`
+            )
+    
             // we got the id from the user params !
             if (response.status === 204)
                 navigate('/Home')
