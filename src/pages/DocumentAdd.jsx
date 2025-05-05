@@ -1,9 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
-import DocumentForm from '../components/DocumentForm/DocumentForm'
 
-//// need to handel the user
+import DocumentForm from '../components/DocumentForm/DocumentForm'
+import { authorizedRequest } from '../lib/api'
+
+
+
 function DocumentAdd() {
 
     const [name, setName] = useState('')
@@ -34,9 +37,13 @@ function DocumentAdd() {
         
 
 
-        const payload = {name, document_url:cloudinaryFileUrl , user:1} ////MUST HANDEL USERS LATER!
-        const url = `${import.meta.env.VITE_BASE_URL}documents/new/`
-        const response = await axios.post(url, payload)
+        const payload = {name, document_url:cloudinaryFileUrl} 
+        const response = await authorizedRequest(
+            'post',
+            `documents/new/`,
+            payload
+        )
+        
         console.log(response)
         // setName('')
         // setCheckedFields('')
