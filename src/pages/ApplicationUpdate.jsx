@@ -1,9 +1,10 @@
-import React from 'react'
-import { useState } from 'react'
 import axios from 'axios'
-import ApplicationForm from '../components/ApplicationForm/ApplicationForm'
+import React from 'react'
+import { useState , useEffect } from 'react'
 import { useParams } from 'react-router'
-import { useEffect } from 'react'
+
+import { authorizedRequest } from '../lib/api'
+import ApplicationForm from '../components/ApplicationForm/ApplicationForm'
 
 
 
@@ -19,7 +20,10 @@ function ApplicationUpdate() {
     async function getFields(){
         //get the tracker object using id
         //get its fields attr
-        const response = await axios.get(`http://127.0.0.1:8000/api/trackers/${trackerId}`)
+        const response = await authorizedRequest(
+            'get',
+            `trackers/${trackerId}/`
+        )
         setFields(response.data.fields)
         setTracker(response.data)
         console.log(response.data.fields)
@@ -28,7 +32,10 @@ function ApplicationUpdate() {
     async function getApplication(){
         //get the application object using id
         //get its attrs
-        const response = await axios.get(`http://127.0.0.1:8000/api/applications/${applicationId}/`)
+        const response = await authorizedRequest(
+            'get',
+            `applications/${applicationId}/`
+        )
         console.log(response.data)
         setApplication(response.data)
         setFormFields(response.data)
@@ -45,8 +52,11 @@ function ApplicationUpdate() {
     async function handleSubmit(event){
         event.preventDefault()
         const payload = { ...formFields, tracker:trackerId }
-        const url = `http://127.0.0.1:8000/api/applications/${applicationId}/update/`
-        const response = await axios.patch(url, payload)
+        const response = await authorizedRequest(
+            'patch',
+            `applications/${applicationId}/update/`,
+            payload
+        )
         console.log(response)
     }
 
