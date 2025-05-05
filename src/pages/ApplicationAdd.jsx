@@ -1,9 +1,10 @@
-import React from 'react'
-import { useState } from 'react'
 import axios from 'axios'
-import ApplicationForm from '../components/ApplicationForm/ApplicationForm'
+import React from 'react'
+import { useState , useEffect } from 'react'
 import { useParams } from 'react-router'
-import { useEffect } from 'react'
+
+import ApplicationForm from '../components/ApplicationForm/ApplicationForm'
+import { authorizedRequest } from '../lib/api'
 
 
 
@@ -17,7 +18,10 @@ function ApplicationAdd() {
     async function getFields(){
         //get the tracker object using id
         //get its fields attr
-        const response = await axios.get(`http://127.0.0.1:8000/api/trackers/${trackerId}`)
+        const response = await authorizedRequest(
+            'get',
+            `trackers/${trackerId}/`
+        )
         setFields(response.data.fields)
         console.log(response.data.fields)
     }
@@ -31,10 +35,13 @@ function ApplicationAdd() {
     async function handleSubmit(event){
         event.preventDefault()
         const payload = { ...formFields, tracker:trackerId }
-        console.log('Payload being sent:', payload) // <-- add this
-        const url = 'http://127.0.0.1:8000/api/applications/new/'
         try{
-            const response = await axios.post(url, payload)
+            const response = await authorizedRequest(
+                'post',
+                `applications/new/`,
+                payload
+            )
+    
         }
         catch (error){
             console.error("Server error:", error.response?.data || error.message)
