@@ -9,6 +9,7 @@ import ApplicationAdd from './pages/ApplicationAdd'
 import ApplicationUpdate from './pages/ApplicationUpdate'
 import DocumentAdd from './pages/DocumentAdd'
 import DocumentList from './components/DocumentList/DocumentList'
+import Signup from './pages/SignUp'
 
 
 
@@ -18,6 +19,7 @@ function App() {
     <>
     <Router>
         <Routes>
+          <Route path='/signup' element={<Signup />} />
           <Route path='/Home' element={<Home />} />
           <Route path='trackers/:id' element={<TrackerDetail/>}/>
           <Route path='trackers/add' element={<TrackerAdd/>}/>
