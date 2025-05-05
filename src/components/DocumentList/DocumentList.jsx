@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Link, useNavigate } from "react-router";
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from "react-router"
+
+import { authorizedRequest } from '../../lib/api'
 
 
 
@@ -10,7 +12,10 @@ function DocumentList() {
     const [documents, setDocuments] = useState([])
 
     async function getAllDocuments() {
-        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}documents/`)
+        const response = await authorizedRequest(
+            'get',
+            `documents/`
+        )
         console.log(response)
         setDocuments(response.data)
     }
@@ -25,7 +30,10 @@ function DocumentList() {
          * A function that handles the delete button, it deletes the Document by calling the API
          */
         try {
-            const response = await axios.delete(`${import.meta.env.VITE_BASE_URL}documents/${id}/delete/`)
+            const response = await authorizedRequest(
+                'delete',
+                `documents/${id}/delete/`
+            )
         }
         catch (err) {
             console.log(err)
