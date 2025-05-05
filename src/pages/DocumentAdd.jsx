@@ -22,6 +22,8 @@ function DocumentAdd() {
             const cloudinaryResponse = await axios.post(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_NAME}/raw/upload`,
             formData
             )
+            console.log(cloudinaryResponse.data)
+
 
             cloudinaryFileUrl = cloudinaryResponse.data.secure_url
         }
