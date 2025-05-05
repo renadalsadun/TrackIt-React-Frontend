@@ -2,8 +2,9 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router'
 import axios from 'axios'
-import ApplicationList from '../components/ApplicationList/ApplicationList'
 
+import ApplicationList from '../components/ApplicationList/ApplicationList'
+import { authorizedRequest } from '../lib/api'
 
 
 function TrackerDetail() {
