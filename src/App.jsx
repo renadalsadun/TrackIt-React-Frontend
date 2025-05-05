@@ -26,6 +26,10 @@ function App() {
   return (
     <>
     <Router>
+      <nav>
+        <button onClick={logout}>Log Out</button>
+      </nav>
+
         <Routes>
           <Route path='/' element={<h1>WELCOME</h1>}/>
           <Route path='/signup' element={<Signup />} />

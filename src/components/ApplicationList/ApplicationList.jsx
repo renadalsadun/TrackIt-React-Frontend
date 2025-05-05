@@ -87,9 +87,9 @@ function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting
         getFieldsAndApplications()
     }, [])
 
-    // useEffect(() => {
-    //     getAllApplications()
-    // }, [props.fields])
+    useEffect(() => {
+        getAllApplications()
+    }, [props.fields])
 
 
 

@@ -1,10 +1,10 @@
-import React from 'react'
-import { useState } from 'react'
 import axios from 'axios'
+import React from 'react'
+import { useState , useEffect } from 'react'
+import { useNavigate , useParams } from 'react-router'
+
+import { authorizedRequest } from '../lib/api'
 import TrackerForm from '../components/TrackerForm/TrackerForm'
-import { useParams } from 'react-router'
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router'
 
 
 //// need to handel the user
@@ -25,7 +25,10 @@ function TrackerUpdate(props) {
 
     //to get the clicked Tracker's data from its id!
     async function getCurrentResponceData() {
-        const response = await axios.get(`http://127.0.0.1:8000/api/trackers/${id}/`)
+        const response = await authorizedRequest(
+            'get',
+            `trackers/${id}/`
+        )
         setName(response.data.name)
         setCheckedFields(response.data.fields)
     }
@@ -37,14 +40,17 @@ function TrackerUpdate(props) {
 
 
     async function handleSubmit(event){
-        // we will get a Promise instead of the result if we did not use async
-        // and to solve CORS issue add to django ()
+        // 200 : 400
 
         event.preventDefault()
         const fields = checkedFields
-        const payload = {name, fields, user:1} ////MUST HANDEL USERS LATER!
-        const url = `http://127.0.0.1:8000/api/trackers/${id}/update/`
-        const response = await axios.patch(url, payload)
+        const payload = {name, fields} 
+        const response = await authorizedRequest(
+            'patch',
+            `trackers/${id}/update/`,
+            payload
+        )
+
         console.log(response)
         navigate(`/trackers/${id}`)
     }
