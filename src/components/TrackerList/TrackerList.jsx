@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Link, useNavigate } from "react-router";
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from "react-router"
+
+import { authorizedRequest } from '../../lib/api'
 
 
 
@@ -10,10 +12,12 @@ function TrackerList() {
     const [trackers, setTrackers] = useState([])
 
     async function getAllTrackers() {
-        // we will get a Promise instead of the result if we did not use async
-        // and to solve CORS issue add to django ()
 
-        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}trackers/`)
+        const response = await authorizedRequest(
+            'get',
+            `trackers/`
+        )
+
         console.log(response)
         setTrackers(response.data)
     }
