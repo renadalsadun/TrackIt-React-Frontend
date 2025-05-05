@@ -13,7 +13,7 @@ function TrackerList() {
         // we will get a Promise instead of the result if we did not use async
         // and to solve CORS issue add to django ()
 
-        const response = await axios.get('http://127.0.0.1:8000/api/trackers/')
+        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}trackers/`)
         console.log(response)
         setTrackers(response.data)
     }

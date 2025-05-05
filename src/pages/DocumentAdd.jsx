@@ -5,7 +5,6 @@ import DocumentForm from '../components/DocumentForm/DocumentForm'
 
 //// need to handel the user
 function DocumentAdd() {
-// formTitle handleSubmit name setName setDocumentURL submitButtonText
 
     const [name, setName] = useState('')
     const [documentURL, setDocumentURL] = useState(null)
@@ -20,7 +19,7 @@ function DocumentAdd() {
         formData.append('upload_preset', 'track_it_app')
 
         try{
-            const cloudinaryResponse = await axios.post(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_NAME}/image/upload`,
+            const cloudinaryResponse = await axios.post(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_NAME}/raw/upload`,
             formData
             )
 
@@ -34,7 +33,7 @@ function DocumentAdd() {
 
 
         const payload = {name, document_url:cloudinaryFileUrl , user:1} ////MUST HANDEL USERS LATER!
-        const url = 'http://127.0.0.1:8000/api/documents/new/'
+        const url = `${import.meta.env.VITE_BASE_URL}documents/new/`
         const response = await axios.post(url, payload)
         console.log(response)
         // setName('')
