@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from "react-router";
+
+import { authorizedRequest } from '../../lib/api';
 
 
 
@@ -11,9 +13,16 @@ function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting
     
 
     async function getFieldsAndApplications() {
-        const trackerResponse = await axios.get(`http://127.0.0.1:8000/api/trackers/${props.id}`)
+        const trackerResponse = await authorizedRequest(
+            'get',
+            `trackers/${props.id}/`
+        )
         props.setFields(trackerResponse.data.fields)
-        const applicationsResponse = await axios.get(`http://127.0.0.1:8000/api/applications/`)
+
+        const applicationsResponse = await authorizedRequest(
+            'get',
+            `applications/`
+        )
         console.log(applicationsResponse)
         setApplications(applicationsResponse.data)
     }
