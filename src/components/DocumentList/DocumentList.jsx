@@ -1,6 +1,9 @@
 import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from "react-router"
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
 import { authorizedRequest } from '../../lib/api'
 
@@ -47,16 +50,13 @@ function DocumentList() {
                 {documents.map(document => {
                     return (
                         <li key={document.id}>
-                            <p>{document.name}</p>
-                            <embed
-                                src={document.document_url}
-                            type="application/pdf"
-                            // frameBorder="0"
-                            // scrolling="auto"
-                            // height="100%"
-                            // width="100%"
-                            ></embed>
-                            <button onClick={()=>{deleteDocument(document.id)}}>Delete</button>
+                            {/* (noopener,noreferrer) from stack overflow */}
+                            <a href={document.document_url} target  = '_blank' rel='noopener,noreferrer'>
+                            {document.name}
+                            </a>
+
+
+                            <button onClick={() => { deleteDocument(document.id) }}>Delete</button>
 
                         </li>
                     )

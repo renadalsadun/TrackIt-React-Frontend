@@ -8,7 +8,6 @@ import { authorizedRequest } from '../../lib/api';
 
 function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting 
 
-    //id fields setFields applications setApplications
     const [applications, setApplications] = useState([])
     
 

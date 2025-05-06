@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import DocumentForm from '../components/DocumentForm/DocumentForm'
 import { authorizedRequest } from '../lib/api'
+import { uploadDirect } from '@uploadcare/upload-client';
 
 
 
@@ -11,59 +12,59 @@ function DocumentAdd() {
 
     const [name, setName] = useState('')
     const [documentURL, setDocumentURL] = useState(null)
+    
+    
+    
+    
+    // From Uploadcare Documentations 
+    async function handleFileSelect(event) {
+        console.log(event)
+        const file = event.target.files[0];
+        if (!file) return;
+        try {
+            const response = await uploadDirect(file, {
+                publicKey: import.meta.env.VITE_UPLOADCARE_PUBLIC_KEY,
+                store: 'auto',
+            });
 
-    async function handleSubmit(event){
+            setDocumentURL(response.cdnUrl)
+        } 
+        catch (err) {
+            console.error('Upload error:', err);
+        }
+
+    }
+
+    async function handleSubmit(event) {
         event.preventDefault()
 
-
-        let cloudinaryFileUrl = ''
-        const formData = new FormData()
-        formData.append('file', documentURL)
-        formData.append('upload_preset', 'track_it_app')
-
-        try{
-            const cloudinaryResponse = await axios.post(`https://api.cloudinary.com/v1_1/${import.meta.env.VITE_CLOUDINARY_NAME}/raw/upload`,
-            formData
-            )
-            console.log(cloudinaryResponse.data)
-
-
-            cloudinaryFileUrl = cloudinaryResponse.data.secure_url
+        const payload = {
+            name,
+            document_url: documentURL
         }
-        catch (error){
-            console.log(error)
 
+        try {
+            const response = await authorizedRequest('post', `documents/new/`, payload)
+            console.log('Saved!', response)
+        } catch (error) {
+            console.log('Submit error:', error)
         }
-        
-
-
-        const payload = {name, document_url:cloudinaryFileUrl} 
-        const response = await authorizedRequest(
-            'post',
-            `documents/new/`,
-            payload
-        )
-        
-        console.log(response)
-        // setName('')
-        // setCheckedFields('')
     }
 
 
-
-
     return (
-    <div>
-        <h2> DocumentAdd </h2>
-        <DocumentForm 
-            name = {name}
-            setName = {setName}
-            setDocumentURL = {setDocumentURL}
-            formTitle='Add New Document'
-            submitButtonText = 'Add'
-            handleSubmit = {handleSubmit}
-        />
-    </div>
+        <div>
+            <h2> DocumentAdd </h2>
+            <DocumentForm
+                name={name}
+                setName={setName}
+                setDocumentURL={setDocumentURL}
+                formTitle='Add New Document'
+                submitButtonText='Add'
+                handleFileSelect = {handleFileSelect}
+                handleSubmit={handleSubmit}
+            />
+        </div>
     )
 }
 
