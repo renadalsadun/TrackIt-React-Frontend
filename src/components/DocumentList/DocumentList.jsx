@@ -1,8 +1,4 @@
-import axios from 'axios'
-import { ToastContainer, toast } from 'react-toastify'
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from "react-router"
-import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 
 import { authorizedRequest } from '../../lib/api'
@@ -14,13 +10,20 @@ function DocumentList() {
 
     const [documents, setDocuments] = useState([])
 
+    //error handling
+    const [error, setError] = useState()
+
     async function getAllDocuments() {
+        try{
         const response = await authorizedRequest(
             'get',
             `documents/`
         )
-        console.log(response)
         setDocuments(response.data)
+    }
+    catch (error){
+        setError('Something went wrong. Please try again later')
+    }
     }
 
     useEffect(() => {
@@ -39,18 +42,19 @@ function DocumentList() {
             )
         }
         catch (err) {
-            console.log(err)
+            setError('Something went wrong while deleting the document. Please try again later') 
         }
     }
 
     return (
         <div>
             <h2>Documents</h2>
+            {error? (<p>{error}</p>):{}}
             <ul>
                 {documents.map(document => {
                     return (
                         <li key={document.id}>
-                            {/* (noopener,noreferrer) from stack overflow */}
+                            {/* (noopener,noreferrer) source : stack overflow */}
                             <a href={document.document_url} target  = '_blank' rel='noopener,noreferrer'>
                             {document.name}
                             </a>

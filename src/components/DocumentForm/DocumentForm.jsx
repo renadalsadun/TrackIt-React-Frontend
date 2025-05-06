@@ -7,7 +7,6 @@ import '@uploadcare/react-uploader/core.css';
 
 function DocumentForm(props) {
 
-    // formTitle handleSubmit name setName setDocumentURL submitButtonText
 
     const navigate = useNavigate()
 
