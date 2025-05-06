@@ -10,16 +10,23 @@ function TrackerList() {
 
 
     const [trackers, setTrackers] = useState([])
+    const [error, setError] = useState(null)
+    const [loading, setLoading] = useState(true)
+
 
     async function getAllTrackers() {
+        try {
+            const response = await authorizedRequest(
+                'get',
+                `trackers/`
+            )
+            setTrackers(response.data)
 
-        const response = await authorizedRequest(
-            'get',
-            `trackers/`
-        )
-
-        console.log(response)
-        setTrackers(response.data)
+        }
+        catch (error){
+            setError('Something went wrong. Please try again later')
+            setLoading(false) 
+        }
     }
 
     useEffect(() => {
@@ -28,6 +35,23 @@ function TrackerList() {
 
 
 
+    if (loading) {
+        return <p>Loading trackers...</p>
+    }
+
+    if (trackers.length === 0){
+        return(
+            <div>
+                <h2>No Trackers Found</h2>
+                <p><a href="/trackers/add">Add Some</a></p>
+            </div>
+        )
+    }
+    if(error){
+        return(
+            <p>{error}</p>
+        )
+    }
     return (
         <div>
             <h2>Trackers</h2>
