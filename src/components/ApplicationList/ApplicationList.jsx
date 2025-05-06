@@ -9,51 +9,43 @@ import { authorizedRequest } from '../../lib/api';
 function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting 
 
     const [applications, setApplications] = useState([])
-    
+    const [filteredApplications, setFilteredApplications] = useState([])
+    const [loading, setLoading] = useState(true)
+
 
     async function getFieldsAndApplications() {
+        // 1. get the TRACKER fields
         const trackerResponse = await authorizedRequest(
             'get',
             `trackers/${props.id}/`
         )
         props.setFields(trackerResponse.data.fields)
 
+        // 2. get all the Applications 
         const applicationsResponse = await authorizedRequest(
             'get',
             `applications/`
         )
+        console.log('applicationsResponse')
         console.log(applicationsResponse)
         setApplications(applicationsResponse.data)
     }
 
 
 
-    // 1. get the TRACKER fields
-    // async function getFields() {
-    //     //get the tracker object using id
-    //     //get its fields attr
-    //     const response = await axios.get(`http://127.0.0.1:8000/api/trackers/${props.id}`)
-    //     props.setFields(response.data.fields)
-    // }
-
-
-    // 2. get all the Applications that belong to THE CURRENT TRACKER
 
     async function getAllApplications() {
-        // 1) get the applications
         // 2) filter them to the current Tracker
         // 3) filter their fields 
         // 3.1) add its id to it for navigation
         // 3.2) check if the field is priority to change it from a single letter to its meaning
         // 4) pass the clean applications ✨
 
-        // 1
-        // const response = await axios.get(`http://127.0.0.1:8000/api/applications/`)
-        // console.log(response)
 
-        // 2
+
+        // 2 filter the Applications so that we have the ones that belong to THE CURRENT TRACKER
         const this_tracker_applications = applications.filter(
-            (application) => application.tracker === props.id)
+            (application) => application.tracker === Number(props.id))
 
         // 3
         const applications_with_tracker_fields = []
@@ -83,7 +75,7 @@ function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting
         }
 
         // 4
-        setApplications(applications_with_tracker_fields)
+        setFilteredApplications(applications_with_tracker_fields)
     }
 
 
@@ -91,16 +83,35 @@ function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting
 
 
 
+    // useEffect(() => {
+    //     getFieldsAndApplications()
+    // }, [])
+    
+    // useEffect(() => {
+    //     getAllApplications()
+    // }, [applications])
+
     useEffect(() => {
-        getFieldsAndApplications()
+        async function getFieldsandLoading() {
+            await getFieldsAndApplications()
+            setLoading(false)
+        }
+        getFieldsandLoading()
     }, [])
-
+    
     useEffect(() => {
-        getAllApplications()
-    }, [props.fields])
-
-
-
+        if (applications.length > 0) {
+            getAllApplications()
+        }
+    }, [applications])
+    
+    if (loading) {
+        return <p>Loading applications...</p>
+    }
+    
+    if (filteredApplications.length === 0) {
+        return <p>No applications found</p>
+    }
     return (
         <div>
             <h2>Applications</h2>
@@ -116,7 +127,7 @@ function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting
                 </thead>
                 <tbody>
 
-                    {applications.map((application) => {
+                    {filteredApplications.map((application) => {
                         return (
                             <tr key = {application.id} >
 
