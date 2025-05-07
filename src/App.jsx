@@ -12,6 +12,7 @@ import DocumentList from './components/DocumentList/DocumentList'
 import Signup from './pages/SignUp'
 import Login from './pages/Login'
 import Navbar from './components/Navbar/Navbar'
+import NotFound from './components/NotFound/NotFound'
 
 
 
@@ -35,6 +36,8 @@ function App() {
           <Route path='/trackers/:trackerId/applications/:applicationId/edit' element={<ApplicationUpdate/>}/>
           <Route path='/documents/add' element={<DocumentAdd/>}/>
           <Route path='/documents' element={<DocumentList/>}/>
+          <Route path='/not-found' element={<NotFound />} />
+          <Route path='*' element={<NotFound/>}/>
         </Routes>
       </Router>
 
