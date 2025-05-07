@@ -1,4 +1,3 @@
-import axios from 'axios'
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
@@ -42,15 +41,15 @@ function ApplicationUpdate() {
     async function getApplication() {
         //get the application object using id
         //get its attrs
-        try{
+        try {
             const response = await authorizedRequest(
                 'get',
                 `applications/${applicationId}/`
             )
             setFormFields(response.data)
-    
+
         }
-        catch(error){
+        catch (error) {
             setError('Something went wrong. Please try again later')
         }
 
@@ -66,15 +65,15 @@ function ApplicationUpdate() {
     async function handleSubmit(event) {
         event.preventDefault()
         const payload = { ...formFields, tracker: trackerId }
-        try{
+        try {
             const response = await authorizedRequest(
                 'patch',
                 `applications/${applicationId}/update/`,
                 payload
             )
-    
+
         }
-        catch{
+        catch {
             setError('Something went wrong. Please try again later')
         }
     }
@@ -82,8 +81,6 @@ function ApplicationUpdate() {
 
     return (
         <div>
-            <h2> ApplicationUpdate </h2>
-            {error?(<p>{error}</p>):{}}
             <ApplicationForm
                 formTitle='Update Application'
                 fields={fields}
@@ -93,6 +90,8 @@ function ApplicationUpdate() {
                 submitButtonText='Update'
                 handleSubmit={handleSubmit}
             />
+            {error ? (<p>{error}</p>) : (<p></p>)}
+
         </div>
     )
 }
