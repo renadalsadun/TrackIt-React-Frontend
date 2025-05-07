@@ -30,7 +30,7 @@ function Login() {
                 access: response.data.access,
                 refresh: response.data.refresh
             })
-            navigate('/')
+            navigate('/Home')
         } catch (err) {
             console.log(err)
             setError('Invalid username or password')
@@ -38,26 +38,42 @@ function Login() {
     }
 
     return (
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="username"
-                    placeholder="Username"
-                    value={formData.username}
-                    onChange={handleChange}
-                    required
-                />
-                <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                />
-                <button type="submit">Login</button>
+
+        <div className='container' style={{marginTop: '10vw', maxWidth : '40vw', minHeight : '60vh'}}>
+            <h1 className=' title is-1'>Login</h1>
+            <form className='box ' onSubmit={handleSubmit}
+            >
+
+                <div className='field'>
+                    <label htmlFor='username' className='label'>Username</label>
+                    <div className="control">
+                        <input
+                            className='input'
+                            type="text"
+                            name="username"
+                            placeholder="Username"
+                            value={formData.username}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                </div>
+                <div className='field'>
+                    <label htmlFor='password' className='label'>Password</label>
+                    <div className="control">
+                        <input
+                            className='input'
+                            type="password"
+                            name="password"
+                            placeholder="password"
+                            value={formData.password}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                </div>
+
+                <button class='button is-primary' type="submit">Login</button>
                 {error && <p>{error}</p>}
             </form>
         </div>

@@ -13,6 +13,7 @@ import Signup from './pages/SignUp'
 import Login from './pages/Login'
 import Navbar from './components/Navbar/Navbar'
 import NotFound from './components/NotFound/NotFound'
+import MainPage from './pages/MainPage'
 
 
 
@@ -25,7 +26,7 @@ function App() {
     <Router>
       <Navbar/>
         <Routes>
-          <Route path='/' element={<h1>WELCOME</h1>}/>
+          <Route path='/' element={<MainPage />}/>
           <Route path='/signup' element={<Signup />} />
           <Route path='/login' element={<Login />} />
           <Route path='/home' element={<Home />} />
