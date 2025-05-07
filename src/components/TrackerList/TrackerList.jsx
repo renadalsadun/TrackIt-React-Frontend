@@ -21,11 +21,12 @@ function TrackerList() {
                 `trackers/`
             )
             setTrackers(response.data)
+            setLoading(false)
 
         }
-        catch (error){
+        catch (error) {
             setError('Something went wrong. Please try again later')
-            setLoading(false) 
+            setLoading(false)
         }
     }
 
@@ -39,32 +40,36 @@ function TrackerList() {
         return <p>Loading trackers...</p>
     }
 
-    if (trackers.length === 0){
-        return(
-            <div>
-                <h2>No Trackers Found</h2>
+    if (trackers.length === 0) {
+        return (
+            <div className='has-text-centered'>
+                <h2 className='title is-3'> No Trackers Found</h2>
                 <p><a href="/trackers/add">Add Some</a></p>
             </div>
         )
     }
-    if(error){
-        return(
-            <p>{error}</p>
+    if (error) {
+        return (
+            <div className='has-text-centered'>
+                <p>{error}</p>
+            </div>
         )
     }
     return (
-        <div>
-            <h2>Trackers</h2>
-            <ul>
+        <div className="container has-text-centered">
+            <h2 className='title is-2 has-text-left	'>Trackers</h2>
+            <div className='columns is-multiline is-centered'>
                 {trackers.map(tracker => {
                     return (
-                        <li key={tracker.id}>
-                            <Link to={`/trackers/${tracker.id}`}> {tracker.name} </Link>
-                        </li>
+                        <div className='column is-one-quarter' key={tracker.id}>
+                            <Link to={`/trackers/${tracker.id}`} className="box title is-4">
+                                {tracker.name}
+                            </Link>
+                        </div>
                     )
                 })
                 }
-            </ul>
+            </div>
 
         </div>
 
