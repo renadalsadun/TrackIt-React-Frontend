@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState } from 'react'
-import axios from 'axios'
 
 import DocumentForm from '../components/DocumentForm/DocumentForm'
 import { authorizedRequest } from '../lib/api'
@@ -12,7 +11,8 @@ function DocumentAdd() {
 
     const [name, setName] = useState('')
     const [documentURL, setDocumentURL] = useState(null)
-    
+    const [error, setError] = useState(null) //error handling
+
     
     
     
@@ -30,7 +30,8 @@ function DocumentAdd() {
             setDocumentURL(response.cdnUrl)
         } 
         catch (err) {
-            console.error('Upload error:', err);
+            setError('File upload failed. Try again')
+
         }
 
     }
@@ -45,9 +46,8 @@ function DocumentAdd() {
 
         try {
             const response = await authorizedRequest('post', `documents/new/`, payload)
-            console.log('Saved!', response)
         } catch (error) {
-            console.log('Submit error:', error)
+            setError('Something went wrong. Please try again later')
         }
     }
 
@@ -55,6 +55,8 @@ function DocumentAdd() {
     return (
         <div>
             <h2> DocumentAdd </h2>
+            {error ? (<p>{error}</p>) : {}}
+
             <DocumentForm
                 name={name}
                 setName={setName}
