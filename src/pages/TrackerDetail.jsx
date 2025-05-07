@@ -1,7 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router'
-import axios from 'axios'
 
 import ApplicationList from '../components/ApplicationList/ApplicationList'
 import { authorizedRequest } from '../lib/api'
@@ -15,7 +14,6 @@ function TrackerDetail() {
     const [deleteConfirm, setDeleteConfirm] = useState(false)
     const navigate = useNavigate()
     const [fields, setFields] = useState([])
-//id fields setFields 
 
 
 
@@ -30,7 +28,7 @@ function TrackerDetail() {
                 'get',
                 `trackers/${id}/`
             )
-    
+
             console.log(response)
             setTracker(response.data)
         }
@@ -50,11 +48,19 @@ function TrackerDetail() {
 
 
 
-    function navigateToEditTracker(){
+    function navigateToEditTracker() {
         /**
          * A function that handles the Edit button, used to navigate to tracker edit page
          */
         navigate(`/trackers/${id}/edit`)
+    }
+
+
+    function navigateToAddApplication() {
+        /**
+         * A function that handles the Add application button, used to navigate to application add page
+         */
+        navigate(`/trackers/${id}/applications/add`)
     }
 
 
@@ -69,7 +75,7 @@ function TrackerDetail() {
                 'delete',
                 `trackers/${id}/delete/`
             )
-    
+
             // we got the id from the user params !
             if (response.status === 204)
                 navigate('/Home')
@@ -94,30 +100,33 @@ function TrackerDetail() {
 
     return (
         <>
-            <h2>TrackerDetail</h2>
             {tracker
                 ?
-                (
+                (//has-text-left
                     <>
-                        <h2>{tracker.name}</h2>
+                        <h2 className='title is-2'>{`${tracker.name} Tracker`}</h2>
                         <p>created on:  {tracker.date_created.slice(0, 10)}</p>
                         {/* tracker applications */}
                         <ApplicationList
-                        id = {id}
-                        setFields = {setFields}
-                        fields = {fields}
+                            id={id}
+                            setFields={setFields}
+                            fields={fields}
                         />
+                        <button className="button is-success is-outlined" onClick={navigateToAddApplication}>Add Application</button>
 
                         {
                             deleteConfirm
                                 ?
-                                <button onClick={deleteTracker}>Are you Sure?</button>
+                                <button className="button is-danger" onClick={deleteTracker}>Are you Sure?</button>
                                 :
-                                <button onClick={showConfirmDelete}>Delete</button>
+                                <button className="button is-danger is-outlined"
+                                    onClick={showConfirmDelete}>
+                                    Delete
+                                </button>
 
                         }
 
-                        <button onClick={navigateToEditTracker}>Edit</button>
+                        <button className="button is-warning is-outlined" onClick={navigateToEditTracker}>Edit</button>
 
                     </>
                 ) :

@@ -93,6 +93,13 @@ function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting
     }, [])
 
 
+    function fieldLabel(field){
+        let newField = field.split('_')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        return newField.join(' ')
+    }
+
+
 
     useEffect(() => {
         if (applications.length > 0) {
@@ -106,26 +113,26 @@ function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting
 
 
     if (loading) {
-        return <p>Loading applications...</p>
+        return <p className='title is-2 has-text-warning'>Loading applications...</p>
     }
 
     if (error) {
-        return <p>{error}</p>
+        return <p className='title is-2 has-text-danger'>{error}</p>
     }
 
     if (filteredApplications.length === 0) {
-        return <p>No applications found</p>
+        return <p className='title is-2 '>No applications found</p>
     }
 
     return (
         <div>
-            <h2>Applications</h2>
-            <table>
+            <h2 className='title is-4'>Applications</h2>
+            <table className='table is-hoverable is-fullwidth'>
                 <thead>
                     <tr>
                         {props.fields.map((field) => {
                             return (
-                                <th>{field}</th>
+                                <th>{fieldLabel(field)}</th>
                             )
                         })}
                     </tr>
