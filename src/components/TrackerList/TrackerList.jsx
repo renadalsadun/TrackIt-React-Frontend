@@ -1,4 +1,3 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from "react-router"
 
@@ -14,7 +13,7 @@ function TrackerList() {
     const [loading, setLoading] = useState(true)
 
 
-    async function getAllTrackers() {
+    async function getAllTrackers() { // 401 unautherized
         try {
             const response = await authorizedRequest(
                 'get',
@@ -25,8 +24,17 @@ function TrackerList() {
 
         }
         catch (error) {
-            setError('Something went wrong. Please try again later')
-            setLoading(false)
+            if (error.response?.status === 401 || error.response?.status === 403) {
+                toast.error('Forbidden', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    theme: 'colored'
+                })
+            } 
+            else 
+            {
+                setError('Something went wrong. Please try again later')
+            }
         }
     }
 
@@ -61,7 +69,7 @@ function TrackerList() {
             <div className='columns is-multiline is-centered'>
                 {trackers.map(tracker => {
                     return (
-                        <div className='column is-one-quarter' key={tracker.id}>
+                        <div className='column is-four-fifths' key={tracker.id}>
                             <Link to={`/trackers/${tracker.id}`} className="box title is-4">
                                 {tracker.name}
                             </Link>

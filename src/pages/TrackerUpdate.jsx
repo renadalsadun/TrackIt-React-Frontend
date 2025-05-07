@@ -68,7 +68,7 @@ function TrackerUpdate(props) {
 
             navigate(`/trackers/${id}`)
         }
-        catch{
+        catch {
             setError('Failed to update tracker. Please try again')
         }
     }
@@ -77,7 +77,6 @@ function TrackerUpdate(props) {
     return (
         <div>
             <h2> TrackerUpdate </h2>
-            {error ? (<p>{error}</p>) : {}}
 
             <TrackerForm
                 name={name}
@@ -89,6 +88,8 @@ function TrackerUpdate(props) {
                 submitButtonText='Done'
                 handleSubmit={handleSubmit}
             />
+            {error ? (<p>{error}</p>) : (<p></p>)}
+
         </div>
     )
 }

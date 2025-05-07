@@ -85,7 +85,7 @@ function TrackerDetail() {
 
         }
         catch (err) {
-            console.log(err)
+            setErrMessage('Something went Wrong')
         }
     }
 
