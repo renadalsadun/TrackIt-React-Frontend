@@ -22,16 +22,16 @@ function Navbar() {
                 <div className="navbar-brand">
                     <div id="navbarBasicExample" className="navbar-menu">
                         <div className="navbar-start">
-                            <div className='navbar-item'>
+                            <div className='navbar-item is-tab'>
                                 <Link to="/home">Trackers</Link>
                             </div>
-                            <div className='navbar-item'>
+                            <div className='navbar-item is-tab'>
                                 <Link to='trackers/add'>Add New Tracker</Link>
                             </div>
-                            <div className='navbar-item'>
+                            <div className='navbar-item is-tab'>
                                 <Link to='/documents'>Documents</Link>
                             </div>
-                            <div className='navbar-item'>
+                            <div className='navbar-item is-tab'>
                                 <button id='logout' onClick={logout} >Log Out</button>
                             </div>
                         </div>
@@ -46,10 +46,10 @@ function Navbar() {
                 <div className="navbar-brand">
                     <div id="navbarBasicExample" className="navbar-menu">
                         <div className="navbar-start">
-                            <div className='navbar-item'>
+                            <div className='navbar-item is-tab'>
                                 <Link to="/login">Log In</Link>
                             </div>
-                            <div className='navbar-item'>
+                            <div className='navbar-item is-tab'>
                                 <Link to='/signup'>Sign Up</Link>
                             </div>
                         </div>
