@@ -1,12 +1,51 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Track IT - Frontend
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Description
+Track IT is a full stack web application, built using React, Django REST Framework, and PostgreSQL. It is designed to help users create trackers, manage them, log applications, and attach related documents.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This project was individually developed during the last week of Software Engineering Bootcamp By General Assembly.
+
+
+
+## Tech Stack
+**Backend:**
+Python, JavaScript, PostgreSQL
+
+**Frontend:**
+React, React Router, React Toastify, Bulma CSS, Axios, Uploadcare, JWT
+
+
+### Backend Repo Link
+[Backend Repo Link](https://git.generalassemb.ly/renad/TrackIt-Django-Backend)
+
+## Installation Instructions
+1. Clone Repositories:
+`https://git.generalassemb.ly/renad/TrackIt-React-Frontend.git`
+`https://git.generalassemb.ly/renad/TrackIt-Django-Backend.git`
+
+2. Set up the Backend 
+`cd backend-folder`
+
+`pipenv shell`
+
+`python manage.py runserver`
+
+3. Set up Frontend 
+`cd frontend-folder`
+
+`npm install`
+
+`npm run dev`
+
+
+
+
+## IceBox Features
+- Allow users to create custom fields for their trackers, giving them full control over the structure of their data.
+- Add a new user type (Organizations) with special features like posting application openings, announcements, and managing applicants. 
+- Enable notifications and/or calendar reminders for upcoming application deadlines 
+- Add filters and search functionality to easily browse applications and trackers.
+## Flow
