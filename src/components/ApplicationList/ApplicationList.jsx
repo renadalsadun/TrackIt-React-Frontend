@@ -14,7 +14,7 @@ function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting
     const [filteredApplications, setFilteredApplications] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
-
+    const [documents, setDocuments] = useState([])
 
 
     async function getFieldsAndApplications() {
@@ -34,11 +34,20 @@ function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting
                 `applications/`
             )
             setApplications(applicationsResponse.data)
+
+
+            // 3. get documents 
+            const documentsResponse = await authorizedRequest(
+                'get', 
+                'documents/'
+            )
+
+            setDocuments(documentsResponse.data)
+
         }
 
         catch (error) {
             setError('Something went wrong while getting the data. Please try again later')
-            console.log('error in AppList - getFieldsAndApplications')
 
         }
     }
@@ -73,6 +82,20 @@ function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting
                         application_with_filtered_fields[field] = priority_dict[this_tracker_applications[i][field]]
 
                     }
+                    else if (field === 'documents'){
+                        const documentsNames = this_tracker_applications[i][field].map( (documentId) => {
+                            const document = documents.find((doc) => doc.id === documentId)
+                            if(document){
+                                return document.name
+
+                            }
+                            else{
+                                return 'Deleted'
+
+                            }
+                        })
+                        application_with_filtered_fields[field] = documentsNames.join(' , ')
+                    }
                     else {
                         application_with_filtered_fields[field] = this_tracker_applications[i][field]
                     }
@@ -85,11 +108,9 @@ function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting
         }
         catch (error) {
             setError('Something went wrong while processing the data. Please try again later')
-            console.log('error in AppList - getAllApplications')
 
         }
     }
-
 
 
 

@@ -87,7 +87,6 @@ function TrackerUpdate(props) {
 
     return (
         <div>
-            <h2> TrackerUpdate </h2>
 
             <TrackerForm
                 name={name}

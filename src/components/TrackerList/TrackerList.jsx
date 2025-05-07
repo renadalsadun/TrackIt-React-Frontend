@@ -31,9 +31,8 @@ function TrackerList() {
                     autoClose: 5000,
                     theme: 'colored'
                 })
-            } 
-            else 
-            {
+            }
+            else {
                 setError('Something went wrong. Please try again later')
             }
         }
@@ -66,12 +65,15 @@ function TrackerList() {
     }
     return (
         <div className="container has-text-centered">
-            <h2 className='title is-2 has-text-left	'>Trackers</h2>
+            <h2 className='title is-1 has-text-left	mb-6'>Trackers</h2>
             <div className='columns is-multiline is-centered'>
                 {trackers.map(tracker => {
                     return (
-                        <div className='column is-four-fifths' key={tracker.id}>
-                            <Link to={`/trackers/${tracker.id}`} className="box title is-4">
+                        <div className='column is-four-fifths ' key={tracker.id}>
+                            <Link to={`/trackers/${tracker.id}`}
+                                style={{ backgroundColor: '#e3bcbc', color: '#000' }}
+                                className="box title is-4 ">
+
                                 {tracker.name}
                             </Link>
                         </div>
@@ -79,7 +81,7 @@ function TrackerList() {
                 })
                 }
             </div>
-                <ToastContainer />
+            <ToastContainer />
         </div>
 
     )

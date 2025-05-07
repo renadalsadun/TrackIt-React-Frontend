@@ -91,8 +91,8 @@ function ApplicationForm(props) {
                                     
                                         <div className='field'>
 
-                                            <label htmlFor={field}>{fieldLabel(field)} </label>
-                                            <div className='controls'>
+                                            <label htmlFor={field} className='label'>{fieldLabel(field)} </label>
+                                            <div className='select is-rounded'>
                                                 <select
                                                     id={field}
                                                     name={field}
@@ -122,8 +122,8 @@ function ApplicationForm(props) {
                                     
                                         <div className='field' key={field}>
 
-                                            <label htmlFor={field}>{fieldLabel(field)} </label>
-                                            <div className='controls'>
+                                            <label htmlFor={field} className='label'>{fieldLabel(field)} </label>
+                                            <div className='select is-multiple'>
                                                 <select
                                                     multiple // source : w3school
                                                     id={field}
@@ -163,9 +163,10 @@ function ApplicationForm(props) {
                                 
                                     <div className='field' key={field}>
 
-                                        <label htmlFor={field}>{fieldLabel(field)} </label>
+                                        <label htmlFor={field} className='label'>{fieldLabel(field)} </label>
                                         <div className='controls'>
                                             <input
+                                                className='input is-normal'
                                                 id={field}
                                                 name={field}// as our django app expects!
                                                 type={type}

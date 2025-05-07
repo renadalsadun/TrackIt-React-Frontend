@@ -18,7 +18,7 @@ function Navbar() {
 
     if (refreshToken) {
         return (
-            <nav className='navbar' role='navigation' aria-label='main navigation'>
+            <nav className='navbar is-size-4 p-4 is-light mb-5' role='navigation' aria-label='main navigation'>
                 <div className="navbar-brand">
                     <div id="navbarBasicExample" className="navbar-menu">
                         <div className="navbar-start">

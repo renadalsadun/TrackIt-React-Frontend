@@ -1,7 +1,7 @@
 import { ToastContainer, toast } from 'react-toastify'
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 
 import ApplicationForm from '../components/ApplicationForm/ApplicationForm'
 import { authorizedRequest } from '../lib/api'
@@ -14,7 +14,7 @@ function ApplicationAdd() {
     const { trackerId } = useParams() //trackerid
     const [formFields, setFormFields] = useState({})
     const [fields, setFields] = useState([])
-
+    const navigate = useNavigate()
     //error handling
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(true)
@@ -65,6 +65,9 @@ function ApplicationAdd() {
                     progress: undefined,
                     theme: "colored",
                 })
+                setTimeout(()=>{
+                    navigate(-1)
+                },5000)
 
             }
             else{

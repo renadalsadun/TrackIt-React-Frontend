@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
-
+import { ToastContainer, toast } from 'react-toastify'
 import { authorizedRequest } from '../lib/api'
 import ApplicationForm from '../components/ApplicationForm/ApplicationForm'
 
@@ -71,10 +71,21 @@ function ApplicationUpdate() {
                 `applications/${applicationId}/update/`,
                 payload
             )
+            toast.success('Application updated successfully!', {
+                position: 'top-right',
+                autoClose: 3000,
+                theme: 'colored',
+            })
 
         }
         catch {
             setError('Something went wrong. Please try again later')
+            toast.error('Something went wrong. Please try again later', {
+                position: 'top-right',
+                autoClose: 3000,
+                theme: 'colored',
+            })
+
         }
     }
 
