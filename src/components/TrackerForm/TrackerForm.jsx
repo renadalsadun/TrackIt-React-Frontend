@@ -43,7 +43,7 @@ function TrackerForm(props) {
         <div>
 
             <div className="block">
-                <h1>{props.formTitle}</h1>
+                <h1 className='title is-3'>{props.formTitle}</h1>
             </div>
 
             <form onSubmit={handleFormSubmit}>

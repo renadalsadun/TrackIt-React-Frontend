@@ -1,3 +1,5 @@
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
 
@@ -22,15 +24,39 @@ function ApplicationForm(props) {
                 'get',
                 `documents/`
             )
+            setLoading(false)
+            setDocuments(response.data)
         }
         catch (error) {
             setLoading(false)
             setError('Something went wrong. Please try again later')
+
+            // sourse : React-Toastify Docs
+
+            toast.error('Something went wrong', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            });
         }
 
-        setLoading(false)
-        setDocuments(response.data)
     }
+
+
+
+    function fieldLabel(field) {
+        let newField = field.split('_')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        return newField.join(' ')
+    }
+
+
 
     useEffect(() => {
         getAllDocuments()
@@ -51,7 +77,11 @@ function ApplicationForm(props) {
 
     return (
         <div>
-            <h3>{props.formTitle}</h3>
+            <div className="block">
+
+                <h3 className='title is-3'>{props.formTitle}</h3>
+
+            </div>
             {loading ? (<p> Loading ...</p>) : (
                 <form onSubmit={props.handleSubmit}>
                     {
@@ -61,24 +91,29 @@ function ApplicationForm(props) {
                             if (field === 'priority') {
                                 return (
                                     <>
-                                        <label htmlFor={field}>{field} </label>
-                                        <select
-                                            id={field}
-                                            name={field}
+                                        <div className='field'>
 
-                                            value={props.formFields[field]}
-                                            onChange={event =>
-                                                props.setFormFields({
-                                                    ...props.formFields,
-                                                    [field]: event.target.value
-                                                })
-                                            }
-                                        >
-                                            <option value="C">Critical</option>
-                                            <option value="H">High</option>
-                                            <option value="M">Medium</option>
-                                            <option value="L">Low</option>
-                                        </select>
+                                            <label htmlFor={field}>{fieldLabel(field)} </label>
+                                            <div className='controls'>
+                                                <select
+                                                    id={field}
+                                                    name={field}
+
+                                                    value={props.formFields[field]}
+                                                    onChange={event =>
+                                                        props.setFormFields({
+                                                            ...props.formFields,
+                                                            [field]: event.target.value
+                                                        })
+                                                    }
+                                                >
+                                                    <option value="C">Critical</option>
+                                                    <option value="H">High</option>
+                                                    <option value="M">Medium</option>
+                                                    <option value="L">Low</option>
+                                                </select>
+                                            </div>
+                                        </div>
 
                                     </>
                                 )
@@ -87,56 +122,66 @@ function ApplicationForm(props) {
 
                                 return (
                                     <>
-                                        <label htmlFor={field}>{field} </label>
-                                        <select
-                                            multiple // source : w3school
-                                            id={field}
-                                            name={field}
+                                        <div className='field'>
 
-                                            value={props.formFields[field] || []}
-                                            onChange={event => {
-                                                const selectedDocuments = []
-                                                for (let i = 0; i < event.target.selectedOptions.length; i++) {
-                                                    selectedDocuments.push(event.target.selectedOptions[i].value)
-                                                }
-                                                props.setFormFields({
-                                                    ...props.formFields,
-                                                    [field]: selectedDocuments
-                                                })
-                                            }
-                                            }
-                                        >
-                                            {documents.length ? (
-                                                documents.map(document => (
-                                                    <option key={document.id} value={document.id}>
-                                                        {document.name}
-                                                    </option>
-                                                ))
-                                            ) : (
-                                                <option disabled>No Documents Found</option>
-                                            )}
+                                            <label htmlFor={field}>{fieldLabel(field)} </label>
+                                            <div className='controls'>
+                                                <select
+                                                    multiple // source : w3school
+                                                    id={field}
+                                                    name={field}
 
-                                        </select>
+                                                    value={props.formFields[field] || []}
+                                                    onChange={event => {
+                                                        const selectedDocuments = []
+                                                        for (let i = 0; i < event.target.selectedOptions.length; i++) {
+                                                            selectedDocuments.push(event.target.selectedOptions[i].value)
+                                                        }
+                                                        props.setFormFields({
+                                                            ...props.formFields,
+                                                            [field]: selectedDocuments
+                                                        })
+                                                    }
+                                                    }
+                                                >
+                                                    {documents.length ? (
+                                                        documents.map(document => (
+                                                            <option key={document.id} value={document.id}>
+                                                                {document.name}
+                                                            </option>
+                                                        ))
+                                                    ) : (
+                                                        <option disabled>No Documents Found</option>
+                                                    )}
+
+                                                </select>
+                                            </div>
+                                        </div>
 
                                     </>
                                 )
                             }
                             return (
                                 <>
-                                    <label htmlFor={field}>{field} </label>
-                                    <input
-                                        id={field}
-                                        name={field}// as our django app expects!
-                                        type={type}
-                                        required
-                                        value={props.formFields[field]}
-                                        onChange={event =>
-                                            props.setFormFields({
-                                                ...props.formFields,
-                                                [field]: event.target.value
-                                            })
-                                        }
-                                    />
+                                    <div className='field'>
+
+                                        <label htmlFor={field}>{fieldLabel(field)} </label>
+                                        <div className='controls'>
+                                            <input
+                                                id={field}
+                                                name={field}// as our django app expects!
+                                                type={type}
+                                                required
+                                                value={props.formFields[field]}
+                                                onChange={event =>
+                                                    props.setFormFields({
+                                                        ...props.formFields,
+                                                        [field]: event.target.value
+                                                    })
+                                                }
+                                            />
+                                        </div>
+                                    </div>
                                 </>
                             )
                         }
@@ -144,11 +189,26 @@ function ApplicationForm(props) {
                     }
 
 
-                    <button type='submit'>{props.submitButtonText}</button>
-                    <button onClick={handelCancel}>Cancel</button>
+                    <button className="button is-success" type='submit'>
+                        <span className="icon is-normal">
+                            <i className="fas fa-check"></i>
+                        </span>
+                        <span>{props.submitButtonText}</span>
+                    </button>
+
+
+                    <button className="button is-warning" onClick={handelCancel}>
+                        <span>Cancel</span>
+                        <span className="icon is-normal">
+                            <i className="fas fa-times"></i>
+                        </span>
+                    </button>
 
                 </form>
+                
             )}
+            <ToastContainer />
+
         </div>
     )
 }

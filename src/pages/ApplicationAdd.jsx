@@ -1,4 +1,4 @@
-import axios from 'axios'
+import { ToastContainer } from 'react-toastify'
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
@@ -52,6 +52,37 @@ function ApplicationAdd() {
                 `applications/new/`,
                 payload
             )
+            if (response.status === 201) {
+                // sourse : React-Toastify Docs
+                toast.success('Application Added Successfully!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Bounce,
+                })
+
+            }
+            else{
+            // sourse : React-Toastify Docs
+
+            toast.error('Something went wrong', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            })
+
+            }
 
         }
         catch (error) {
@@ -64,12 +95,10 @@ function ApplicationAdd() {
     if (loading) {
         return <p>Loading form...</p>
     }
-    
+
 
     return (
         <div>
-            <h2> ApplicationAdd </h2>
-            {error ? (<p>{error}</p>) : {}}
             <ApplicationForm
                 formTitle='Add New Application'
                 fields={fields}
@@ -79,6 +108,9 @@ function ApplicationAdd() {
                 submitButtonText='Add'
                 handleSubmit={handleSubmit}
             />
+            <ToastContainer/>
+            {error ? (<p>{error}</p>) : (<p></p>)}
+
         </div>
     )
 }

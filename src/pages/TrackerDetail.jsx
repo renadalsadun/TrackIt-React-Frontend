@@ -77,8 +77,11 @@ function TrackerDetail() {
             )
 
             // we got the id from the user params !
-            if (response.status === 204)
+            if (response.status === 204){
                 navigate('/Home')
+
+            }
+
 
         }
         catch (err) {
