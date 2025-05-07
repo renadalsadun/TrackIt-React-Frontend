@@ -56,7 +56,6 @@ async function authorizedRequest(method, url, data = null) {
                 return retriedResponse
             } catch (err) {
                 console.log(err)
-                window.location.href = '/signup'
             }
             
         }
