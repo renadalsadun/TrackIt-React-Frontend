@@ -1,4 +1,4 @@
-import { ToastContainer, toast, Bounce } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router'
@@ -30,7 +30,6 @@ function ApplicationForm(props) {
         catch (error) {
             setLoading(false)
             setError('Something went wrong. Please try again later')
-
             // sourse : React-Toastify Docs
 
             toast.error('Something went wrong', {
@@ -42,7 +41,6 @@ function ApplicationForm(props) {
                 draggable: true,
                 progress: undefined,
                 theme: "colored",
-                transition: Bounce,
             });
         }
 
@@ -90,7 +88,7 @@ function ApplicationForm(props) {
                             const type = props.DATE_FIELDS.includes(field) ? 'date' : 'text'
                             if (field === 'priority') {
                                 return (
-                                    <>
+                                    
                                         <div className='field'>
 
                                             <label htmlFor={field}>{fieldLabel(field)} </label>
@@ -115,14 +113,14 @@ function ApplicationForm(props) {
                                             </div>
                                         </div>
 
-                                    </>
+                                    
                                 )
                             }
                             if (field === 'documents') {
 
                                 return (
-                                    <>
-                                        <div className='field'>
+                                    
+                                        <div className='field' key={field}>
 
                                             <label htmlFor={field}>{fieldLabel(field)} </label>
                                             <div className='controls'>
@@ -158,12 +156,12 @@ function ApplicationForm(props) {
                                             </div>
                                         </div>
 
-                                    </>
+                                    
                                 )
                             }
                             return (
-                                <>
-                                    <div className='field'>
+                                
+                                    <div className='field' key={field}>
 
                                         <label htmlFor={field}>{fieldLabel(field)} </label>
                                         <div className='controls'>
@@ -182,7 +180,7 @@ function ApplicationForm(props) {
                                             />
                                         </div>
                                     </div>
-                                </>
+                                
                             )
                         }
                         )
@@ -197,7 +195,7 @@ function ApplicationForm(props) {
                     </button>
 
 
-                    <button className="button is-warning" onClick={handelCancel}>
+                    <button className="button is-warning" type='button' onClick={handelCancel}>
                         <span>Cancel</span>
                         <span className="icon is-normal">
                             <i className="fas fa-times"></i>

@@ -1,10 +1,14 @@
+import { ToastContainer, toast } from 'react-toastify';
 import React, { useEffect, useState } from 'react'
-
+import { useNavigate } from 'react-router';
 import { authorizedRequest } from '../../lib/api';
 
 
 
 function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting 
+
+
+    const navigate = useNavigate()
 
     const [applications, setApplications] = useState([])
     const [filteredApplications, setFilteredApplications] = useState([])
@@ -34,6 +38,8 @@ function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting
 
         catch (error) {
             setError('Something went wrong while getting the data. Please try again later')
+            console.log('error in AppList - getFieldsAndApplications')
+
         }
     }
 
@@ -77,8 +83,52 @@ function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting
             // 5. Pass the filtered applications
             setFilteredApplications(applications_with_tracker_fields)
         }
-        catch (error){
+        catch (error) {
             setError('Something went wrong while processing the data. Please try again later')
+            console.log('error in AppList - getAllApplications')
+
+        }
+    }
+
+
+
+
+    function fieldLabel(field) {
+        let newField = field.split('_')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        return newField.join(' ')
+    }
+
+
+
+    function editApplicationNavigator(applicationId){
+        navigate(`/trackers/${props.id}/applications/${applicationId}/edit`)
+    }
+
+
+    async function deleteApplication(applicationId) {
+        try{
+            const applicationsResponse = await authorizedRequest(
+                'delete',
+                `applications/${applicationId}/delete/`
+            )
+            toast.success('Application Deleted Successfully', {
+                position: 'top-right',
+                autoClose: 4000,
+                theme: 'colored',
+            })
+            getFieldsAndApplications()
+            getAllApplications()
+        }
+
+        catch (error) {
+            toast.error('Something went wrong ', {
+                position: 'top-right',
+                autoClose: 4000,
+                theme: 'colored',
+            })
+    
+
         }
     }
 
@@ -91,14 +141,6 @@ function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting
         }
         getFieldsandLoading()
     }, [])
-
-
-    function fieldLabel(field){
-        let newField = field.split('_')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        return newField.join(' ')
-    }
-
 
 
     useEffect(() => {
@@ -117,6 +159,7 @@ function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting
     }
 
     if (error) {
+        console.log()
         return <p className='title is-2 has-text-danger'>{error}</p>
     }
 
@@ -135,6 +178,7 @@ function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting
                                 <th>{fieldLabel(field)}</th>
                             )
                         })}
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -148,6 +192,20 @@ function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting
                                         <td key={field}>{application[field]}</td>
                                     )
                                 })}
+                                <td>
+                                    <button
+                                        className='button is-small is-info'
+                                        onClick={() => editApplicationNavigator(application.id)}
+                                    >
+                                        Edit
+                                    </button>
+                                    <button
+                                        className='button is-small is-danger'
+                                        onClick={() => deleteApplication(application.id)}
+                                    >
+                                        Delete
+                                    </button>
+                                </td>
 
                             </tr>
                         )
@@ -155,6 +213,7 @@ function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting
 
                 </tbody>
             </table>
+            <ToastContainer/>
 
         </div>
 

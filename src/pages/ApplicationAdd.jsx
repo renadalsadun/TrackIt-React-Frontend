@@ -1,4 +1,4 @@
-import { ToastContainer } from 'react-toastify'
+import { ToastContainer, toast } from 'react-toastify'
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
@@ -53,6 +53,7 @@ function ApplicationAdd() {
                 payload
             )
             if (response.status === 201) {
+                setError(null)
                 // sourse : React-Toastify Docs
                 toast.success('Application Added Successfully!', {
                     position: "top-right",
@@ -63,7 +64,6 @@ function ApplicationAdd() {
                     draggable: true,
                     progress: undefined,
                     theme: "colored",
-                    transition: Bounce,
                 })
 
             }
@@ -79,7 +79,6 @@ function ApplicationAdd() {
                 draggable: true,
                 progress: undefined,
                 theme: "colored",
-                transition: Bounce,
             })
 
             }
