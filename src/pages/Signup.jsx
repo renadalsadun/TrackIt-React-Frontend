@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router'
 import { useState } from 'react'
 import axios from 'axios'
 
@@ -9,6 +10,8 @@ function Signup() {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
 
+    const navigate = useNavigate()
+
     async function handleSubmit(event){
         event.preventDefault()
         try {
@@ -18,6 +21,8 @@ function Signup() {
             )
             console.log(response.data)
             setTokens(response.data)
+            navigate('/home')
+
         } catch (err) {
             console.log(err)
         }

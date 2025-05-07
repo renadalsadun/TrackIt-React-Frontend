@@ -49,3 +49,4 @@ React, React Router, React Toastify, Bulma CSS, Axios, Uploadcare, JWT
 - Enable notifications and/or calendar reminders for upcoming application deadlines 
 - Add filters and search functionality to easily browse applications and trackers.
 ## Flow
+![alt text](<Screenshot 2025-05-08 at 1.56.56 AM.png>) ![alt text](<Screenshot 2025-05-08 at 1.57.45 AM.png>)![alt text](<Screenshot 2025-05-08 at 2.02.09 AM.png>) ![alt text](<Screenshot 2025-05-08 at 2.02.15 AM.png>)
