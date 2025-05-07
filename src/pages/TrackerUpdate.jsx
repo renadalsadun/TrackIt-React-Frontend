@@ -1,4 +1,4 @@
-import axios from 'axios'
+import { toast, ToastContainer } from 'react-toastify'
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router'
@@ -65,10 +65,21 @@ function TrackerUpdate(props) {
                 `trackers/${id}/update/`,
                 payload
             )
+            toast.success('Tracker Updated Successfully', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+            });
 
-            navigate(`/trackers/${id}`)
+            // navigate(`/trackers/${id}`)
         }
         catch {
+
             setError('Failed to update tracker. Please try again')
         }
     }
@@ -88,7 +99,9 @@ function TrackerUpdate(props) {
                 submitButtonText='Done'
                 handleSubmit={handleSubmit}
             />
-            {error ? (<p>{error}</p>) : (<p></p>)}
+            <ToastContainer />
+
+            {/* {error ? (<p>{error}</p>) : (<p></p>)} */}
 
         </div>
     )

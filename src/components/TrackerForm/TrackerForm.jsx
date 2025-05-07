@@ -114,7 +114,7 @@ function TrackerForm(props) {
                     </span>
                     <span>{props.submitButtonText}</span>
                 </button>
-                <button className="button is-warning" onClick={handelCancel}>
+                <button className="button is-warning" type="button" onClick={handelCancel}>
                     <span>Cancel</span>
                     <span className="icon is-normal">
                         <i className="fas fa-times"></i>
