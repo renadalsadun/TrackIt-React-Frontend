@@ -18,20 +18,27 @@ function TrackerAdd() {
     const [name, setName] = useState('')
     const [checkedFields , setCheckedFields] = useState([])
     
+    //error handling
+    const [error,setError] = useState(null)
+
+
     async function handleSubmit(event){
 
         event.preventDefault()
         const fields = checkedFields
         const payload = {name, fields}
-        const response = await authorizedRequest(
-            'post',
-            `trackers/new/`,
-            payload
-        )
+        try{
+            const response = await authorizedRequest(
+                'post',
+                `trackers/new/`,
+                payload
+            )
+    
+        }
+        catch{
+            setError('Something went wrong. Please try again later')
+        }
         
-        console.log(response)
-        // setName('')
-        // setCheckedFields('')
     }
 
 
@@ -39,6 +46,8 @@ function TrackerAdd() {
     return (
     <div>
         <h2> TrackerAdd </h2>
+        {error ? (<p>{error}</p>) : {}}
+
         <TrackerForm 
             name = {name}
             FIELDS_LIST = {FIELDS_LIST}
