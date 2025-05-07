@@ -18,22 +18,47 @@ function Navbar() {
 
     if (refreshToken) {
         return (
-            <>
-                <li><Link to="/home">Trackers</Link></li>
-                <li><Link to='trackers/add'>Add New Tracker</Link></li>
-                <li><Link to='/documents'>Documents</Link></li>
-                <li><button id='logout' onClick={logout} >Log Out</button></li>
-            </>
+            <nav className='navbar' role='navigation' aria-label='main navigation'>
+                <div className="navbar-brand">
+                    <div id="navbarBasicExample" className="navbar-menu">
+                        <div className="navbar-start">
+                            <div className='navbar-item'>
+                                <Link to="/home">Trackers</Link>
+                            </div>
+                            <div className='navbar-item'>
+                                <Link to='trackers/add'>Add New Tracker</Link>
+                            </div>
+                            <div className='navbar-item'>
+                                <Link to='/documents'>Documents</Link>
+                            </div>
+                            <div className='navbar-item'>
+                                <button id='logout' onClick={logout} >Log Out</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
         )
     }
-    else{
+    else {
         return (
-            <ul>
-                <li><Link to="/login">Log In</Link></li>
-                <li><Link to='/signup'>Sign Up</Link></li>
-            </ul>
+            <nav className='navbar' role='navigation' aria-label='main navigation'>
+                <div className="navbar-brand">
+                    <div id="navbarBasicExample" className="navbar-menu">
+                        <div className="navbar-start">
+                            <div className='navbar-item'>
+                                <Link to="/login">Log In</Link>
+                            </div>
+                            <div className='navbar-item'>
+                                <Link to='/signup'>Sign Up</Link>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
         )
-    
+
     }
 }
 

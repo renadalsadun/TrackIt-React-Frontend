@@ -46,7 +46,7 @@ function TrackerAdd() {
     return (
     <div>
         <h2> TrackerAdd </h2>
-        {error ? (<p>{error}</p>) : {}}
+        {error ? (<p>{error}</p>) : (<p></p>)}
 
         <TrackerForm 
             name = {name}
