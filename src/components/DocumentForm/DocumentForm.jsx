@@ -17,30 +17,47 @@ function DocumentForm(props) {
 
     return (
         <div>
-            <h3>{props.formTitle}</h3>
+            <h3 className='title is-2'>{props.formTitle}</h3>
             <form onSubmit={props.handleSubmit}>
                 <div>
-                    <label htmlFor='name'>Name: </label>
+                    <label htmlFor='name' className='title is-4' >Name: </label>
                     <input
+                        className='input '
                         id='name'
                         name='name'// as our django app expects!
                         type='text'
+                        placeholder='Name'
                         required
                         value={props.name}
                         onChange={event => props.setName(event.target.value)}
                     />
                 </div>
 
-                <div>
-                    <label htmlFor='document_url'>Document</label>
-                    <input 
-                        type='file'
-                        onChange={props.handleFileSelect}
-                    />
+                <label htmlFor='document_url' className='title is-4 ' >Document:</label>
+                <div className='file is-info is-normal'>
+                    <label className='file-label' htmlFor='document_url'>
+                        <input
+                            id='document_url'
+                            className='file-input'
+                            type='file'
+                            onChange={props.handleFileSelect}
+                        />
+                        <span className='file-cta'>
+                            <span className='file-icon'>
+                                <i className='fas fa-upload'></i>
+                            </span>
+                            <span className='file-label'>Choose a file…</span>
+                        </span>
+                    </label>
                 </div>
 
-                <button type='submit'>{props.submitButtonText}</button>
-                <button onClick={handelCancel}>Cancel</button>
+                <button className="button is-outlined is-success" type='submit'>
+                    <span>{props.submitButtonText}</span>
+                </button>
+                <button className="button is-outlined is-warning" type='button' onClick={handelCancel}>
+                    <span>Cancel</span>
+                </button>
+
 
             </form>
         </div>

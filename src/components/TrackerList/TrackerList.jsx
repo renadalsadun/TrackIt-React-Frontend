@@ -1,3 +1,4 @@
+import { ToastContainer, toast } from 'react-toastify'
 import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from "react-router"
 
@@ -78,7 +79,7 @@ function TrackerList() {
                 })
                 }
             </div>
-
+                <ToastContainer />
         </div>
 
     )

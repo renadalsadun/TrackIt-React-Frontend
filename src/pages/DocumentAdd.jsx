@@ -1,3 +1,4 @@
+import { ToastContainer, toast } from 'react-toastify'
 import React from 'react'
 import { useState } from 'react'
 
@@ -13,9 +14,8 @@ function DocumentAdd() {
     const [documentURL, setDocumentURL] = useState(null)
     const [error, setError] = useState(null) //error handling
 
-    
-    
-    
+
+
     // From Uploadcare Documentations 
     async function handleFileSelect(event) {
         console.log(event)
@@ -28,9 +28,16 @@ function DocumentAdd() {
             });
 
             setDocumentURL(response.cdnUrl)
-        } 
+        }
         catch (err) {
             setError('File upload failed. Try again')
+            toast.error('File upload failed. Try again', {
+                position: 'top-right',
+                autoClose: 4000,
+                theme: 'colored',
+            })
+
+
 
         }
 
@@ -46,16 +53,29 @@ function DocumentAdd() {
 
         try {
             const response = await authorizedRequest('post', `documents/new/`, payload)
+            toast.success('Document Added Successfully!', {
+                position: 'top-right',
+                autoClose: 4000,
+                theme: 'colored',
+            })
+
         } catch (error) {
             setError('Something went wrong. Please try again later')
+            toast.error('File upload failed. Try again', {
+                position: 'top-right',
+                autoClose: 4000,
+                theme: 'colored',
+            })
+
         }
     }
 
 
+
+
     return (
         <div>
-            <h2> DocumentAdd </h2>
-            {error ? (<p>{error}</p>) : {}}
+            {error ? (<p className='title is-3'>{error}</p>) : (<p></p>)}
 
             <DocumentForm
                 name={name}
@@ -63,9 +83,10 @@ function DocumentAdd() {
                 setDocumentURL={setDocumentURL}
                 formTitle='Add New Document'
                 submitButtonText='Add'
-                handleFileSelect = {handleFileSelect}
+                handleFileSelect={handleFileSelect}
                 handleSubmit={handleSubmit}
             />
+        <ToastContainer/>
         </div>
     )
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
+import { ToastContainer, toast } from 'react-toastify';
 import 'reactjs-popup/dist/index.css';
-
+import { useNavigate } from 'react-router';
 import { authorizedRequest } from '../../lib/api'
 
 
@@ -9,22 +10,31 @@ function DocumentList() {
 
 
     const [documents, setDocuments] = useState([])
+    const navigate = useNavigate()
 
     //error handling
     const [error, setError] = useState()
 
     async function getAllDocuments() {
-        try{
-        const response = await authorizedRequest(
-            'get',
-            `documents/`
-        )
-        setDocuments(response.data)
+        try {
+            const response = await authorizedRequest(
+                'get',
+                `documents/`
+            )
+            setDocuments(response.data)
+        }
+        catch (error) {
+            setError('Something went wrong. Please try again later')
+        }
     }
-    catch (error){
-        setError('Something went wrong. Please try again later')
+
+
+
+    function navigateToAddDocument() {
+        navigate(`/documents/add`)
     }
-    }
+
+
 
     useEffect(() => {
         getAllDocuments()
@@ -40,34 +50,56 @@ function DocumentList() {
                 'delete',
                 `documents/${id}/delete/`
             )
+            setError(null)
+            toast.success('Document Deleted Successfully', {
+                position: 'top-right',
+                autoClose: 4000,
+                theme: 'colored',
+            })
+            getAllDocuments()
         }
+
         catch (err) {
-            setError('Something went wrong while deleting the document. Please try again later') 
+            setError('Something went wrong while deleting the document. Please try again later')
+            toast.error('Something went wrong', {
+                position: 'top-right',
+                autoClose: 4000,
+                theme: 'colored',
+            })
+
         }
     }
 
     return (
-        <div>
-            <h2>Documents</h2>
-            {error? (<p>{error}</p>):{}}
+        <div className='container '>
+            <h2 className='title is-2'>Documents</h2>
+            {error ? (<p className='title is-3'>{error}</p>) : (<p></p>)}
             <ul>
                 {documents.map(document => {
                     return (
-                        <li key={document.id}>
-                            {/* (noopener,noreferrer) source : stack overflow */}
-                            <a href={document.document_url} target  = '_blank' rel='noopener,noreferrer'>
-                            {document.name}
-                            </a>
+                        <li key={document.id} className='box '>
+                            <div className='is-flex is-justify-content-space-between is-align-items-center'>
+
+                                {/* (noopener,noreferrer) source : stack overflow */}
+                                <a href={document.document_url} target='_blank' rel='noopener,noreferrer' className='title is-4 has-text-danger-light	'>
+                                    {document.name}
+                                </a>
 
 
-                            <button onClick={() => { deleteDocument(document.id) }}>Delete</button>
+                                <button className='delete is-large' onClick={() => { deleteDocument(document.id) }}></button>
 
+                            </div>
                         </li>
+
                     )
                 })
                 }
-            </ul>
+                <button className="button is-success" type='button' onClick={navigateToAddDocument}>
+                    <span>Add Document</span>
+                </button>
 
+            </ul>
+            <ToastContainer />
         </div>
 
     )
