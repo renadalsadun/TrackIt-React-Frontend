@@ -23,22 +23,44 @@ React, React Router, React Toastify, Bulma CSS, Axios, Uploadcare, JWT
 
 ## Installation Instructions
 1. Clone Repositories:
+
+
 `https://git.generalassemb.ly/renad/TrackIt-React-Frontend.git`
+
+
 `https://git.generalassemb.ly/renad/TrackIt-Django-Backend.git`
 
+
+
 2. Set up the Backend 
+
+
 `cd backend-folder`
+
+
 
 `pipenv shell`
 
+
+
 `python manage.py runserver`
 
+
+
 3. Set up Frontend 
+
+
 `cd frontend-folder`
+
+
 
 `npm install`
 
+
+
 `npm run dev`
+
+
 
 
 
@@ -49,4 +71,4 @@ React, React Router, React Toastify, Bulma CSS, Axios, Uploadcare, JWT
 - Enable notifications and/or calendar reminders for upcoming application deadlines 
 - Add filters and search functionality to easily browse applications and trackers.
 ## Flow
-![alt text](<Screenshot 2025-05-08 at 1.56.56 AM.png>) ![alt text](<Screenshot 2025-05-08 at 1.57.45 AM.png>)![alt text](<Screenshot 2025-05-08 at 2.02.09 AM.png>) ![alt text](<Screenshot 2025-05-08 at 2.02.15 AM.png>)
+![main page](<Screenshot 2025-05-08 at 3.25.27 AM.png>)![add new tracker functionality](<Screenshot 2025-05-08 at 3.26.27 AM.png>)![add application to tracker](<Screenshot 2025-05-08 at 3.27.27 AM.png>)![add new document](<Screenshot 2025-05-08 at 3.28.06 AM.png>)
