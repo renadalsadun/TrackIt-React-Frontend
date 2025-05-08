@@ -65,24 +65,24 @@ function ApplicationAdd() {
                     progress: undefined,
                     theme: "colored",
                 })
-                setTimeout(()=>{
+                setTimeout(() => {
                     navigate(-1)
-                },5000)
+                }, 5000)
 
             }
-            else{
-            // sourse : React-Toastify Docs
+            else {
+                // sourse : React-Toastify Docs
 
-            toast.error('Something went wrong', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            })
+                toast.error('Something went wrong', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: false,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                })
 
             }
 
@@ -110,7 +110,7 @@ function ApplicationAdd() {
                 submitButtonText='Add'
                 handleSubmit={handleSubmit}
             />
-            <ToastContainer/>
+            <ToastContainer />
             {error ? (<p>{error}</p>) : (<p></p>)}
 
         </div>

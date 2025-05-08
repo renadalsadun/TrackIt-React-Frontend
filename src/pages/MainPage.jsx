@@ -5,7 +5,7 @@ function MainPage() {
         <>
 
             <div className=' container is-widescreen'>
-                <section class="hero is-large is-link">
+                <section class="hero is-large " style={{ backgroundColor: '#FAF2F2' }}>
                     <div class="hero-body">
                         <p class="title is-1">Track IT</p>
                         <p class="subtitle">All in One Place</p>

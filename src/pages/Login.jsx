@@ -39,9 +39,12 @@ function Login() {
 
     return (
 
-        <div className='container' style={{marginTop: '10vw', maxWidth : '40vw', minHeight : '60vh'}}>
+        <div className='container' style={{
+            marginTop: '10vw', maxWidth: '40vw', minHeight: '60vh',
+            backgroundColor: '#FAF2F2', padding: '70px'
+        }}>
             <h1 className=' title is-1'>Login</h1>
-            <form className='box ' onSubmit={handleSubmit}
+            <form className='box py-6' onSubmit={handleSubmit}
             >
 
                 <div className='field'>

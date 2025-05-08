@@ -189,8 +189,8 @@ function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting
     }
 
     return (
-        <div>
-            <h2 className='title is-4'>Applications</h2>
+        <div className='container'>
+            <h2 className='title is-3' >Applications</h2>
             <table className='table is-hoverable is-fullwidth'>
                 <thead>
                     <tr>
@@ -216,6 +216,7 @@ function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting
                                 <td>
                                     <button
                                         className='button is-small is-info'
+                                        style={{ marginRight: '10px' }} 
                                         onClick={() => editApplicationNavigator(application.id)}
                                     >
                                         Edit

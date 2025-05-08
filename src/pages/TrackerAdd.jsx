@@ -72,7 +72,7 @@ function TrackerAdd() {
 
 
     return (
-        <div>
+        <div className='container' style={{ backgroundColor: '-moz-initial' }}>
 
             <TrackerForm
                 name={name}

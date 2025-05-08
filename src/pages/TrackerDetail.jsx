@@ -77,7 +77,7 @@ function TrackerDetail() {
             )
 
             // we got the id from the user params !
-            if (response.status === 204){
+            if (response.status === 204) {
                 navigate('/Home')
 
             }
@@ -107,30 +107,32 @@ function TrackerDetail() {
                 ?
                 (//has-text-left
                     <>
-                        <h2 className='title is-2'>{`${tracker.name} Tracker`}</h2>
-                        <p>created on:  {tracker.date_created.slice(0, 10)}</p>
+                        <h2 className='title is-2' style={{ marginLeft: '20px' }}>{`${tracker.name} Tracker`}</h2>
+                        <p style={{ marginLeft: '25px', marginBottom: '20px' }}>created on:  {tracker.date_created.slice(0, 10)}</p>
                         {/* tracker applications */}
                         <ApplicationList
                             id={id}
                             setFields={setFields}
                             fields={fields}
                         />
-                        <button className="button is-success is-outlined" onClick={navigateToAddApplication}>Add Application</button>
+                        <div className='has-text-right'>
+                            <button className="button is-success" style={{ marginRight: '20px', marginBottom: '20px' }} onClick={navigateToAddApplication}>Add Application</button>
 
-                        {
-                            deleteConfirm
-                                ?
-                                <button className="button is-danger" onClick={deleteTracker}>Are you Sure?</button>
-                                :
-                                <button className="button is-danger is-outlined"
-                                    onClick={showConfirmDelete}>
-                                    Delete
-                                </button>
+                            {
+                                deleteConfirm
+                                    ?
+                                    <button className="button is-danger" style={{ marginRight: '20px', marginBottom: '20px' }} onClick={deleteTracker}>Are you Sure?</button>
+                                    :
+                                    <button className="button is-danger"
+                                        style={{ marginRight: '20px', marginBottom: '20px' }}
+                                        onClick={showConfirmDelete}>
+                                        Delete Tracker
+                                    </button>
 
-                        }
+                            }
 
-                        <button className="button is-warning is-outlined" onClick={navigateToEditTracker}>Edit</button>
-
+                            <button className="button is-warning " style={{ marginRight: '20px', marginBottom: '20px' }} onClick={navigateToEditTracker}>Edit Tracker</button>
+                        </div>
                     </>
                 ) :
                 (<h1>Loading ...</h1>)

@@ -86,7 +86,7 @@ function DocumentAdd() {
                 handleFileSelect={handleFileSelect}
                 handleSubmit={handleSubmit}
             />
-        <ToastContainer/>
+            <ToastContainer />
         </div>
     )
 }

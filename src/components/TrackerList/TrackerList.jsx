@@ -64,14 +64,14 @@ function TrackerList() {
         )
     }
     return (
-        <div className="container has-text-centered">
+        <div className="container has-text-left">
             <h2 className='title is-1 has-text-left	mb-6'>Trackers</h2>
             <div className='columns is-multiline is-centered'>
                 {trackers.map(tracker => {
                     return (
                         <div className='column is-four-fifths ' key={tracker.id}>
                             <Link to={`/trackers/${tracker.id}`}
-                                style={{ backgroundColor: '#e3bcbc', color: '#000' }}
+                                style={{ backgroundColor: '#FAF2F2', color: '#000' }}
                                 className="box title is-4 ">
 
                                 {tracker.name}

@@ -71,17 +71,18 @@ function DocumentList() {
     }
 
     return (
-        <div className='container '>
-            <h2 className='title is-2'>Documents</h2>
+
+        <div className='container has-text-centered '>
+            <h2 className='title is-1 has-text-left	mb-6'>Documents</h2>
             {error ? (<p className='title is-3'>{error}</p>) : (<p></p>)}
             <ul>
                 {documents.map(document => {
                     return (
-                        <li key={document.id} className='box '>
+                        <li key={document.id} className='box 'style={{backgroundColor : '#FAF2F2'}}>
                             <div className='is-flex is-justify-content-space-between is-align-items-center'>
 
                                 {/* (noopener,noreferrer) source : stack overflow */}
-                                <a href={document.document_url} target='_blank' rel='noopener,noreferrer' className='title is-4 has-text-danger-light	'>
+                                <a href={document.document_url} target='_blank' rel='noopener,noreferrer' className='title is-4 	' >
                                     {document.name}
                                 </a>
 

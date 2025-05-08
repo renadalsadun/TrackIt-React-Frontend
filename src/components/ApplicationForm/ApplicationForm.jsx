@@ -74,139 +74,147 @@ function ApplicationForm(props) {
     }
 
     return (
-        <div>
+        <div className='container'>
             <div className="block">
 
                 <h3 className='title is-3'>{props.formTitle}</h3>
 
-            </div>
-            {loading ? (<p> Loading ...</p>) : (
-                <form onSubmit={props.handleSubmit}>
-                    {
 
-                        props.fields.map(field => {
-                            const type = props.DATE_FIELDS.includes(field) ? 'date' : 'text'
-                            if (field === 'priority') {
-                                return (
-                                    
-                                        <div className='field'>
+                {loading ? (<p> Loading ...</p>) : (
+                    <form onSubmit={props.handleSubmit}>
+                        <div className=' container is-widescreen'>
+                            <section class="hero is-large " style={{ backgroundColor: '#FAF2F2' }}>
+                                <div class="hero-body">
 
-                                            <label htmlFor={field} className='label'>{fieldLabel(field)} </label>
-                                            <div className='select is-rounded'>
-                                                <select
-                                                    id={field}
-                                                    name={field}
+                                    {
 
-                                                    value={props.formFields[field]}
-                                                    onChange={event =>
-                                                        props.setFormFields({
-                                                            ...props.formFields,
-                                                            [field]: event.target.value
-                                                        })
-                                                    }
-                                                >
-                                                    <option value="C">Critical</option>
-                                                    <option value="H">High</option>
-                                                    <option value="M">Medium</option>
-                                                    <option value="L">Low</option>
-                                                </select>
-                                            </div>
-                                        </div>
+                                        props.fields.map(field => {
+                                            const type = props.DATE_FIELDS.includes(field) ? 'date' : 'text'
+                                            if (field === 'priority') {
+                                                return (
 
-                                    
-                                )
-                            }
-                            if (field === 'documents') {
+                                                    <div className='field'>
 
-                                return (
-                                    
-                                        <div className='field' key={field}>
+                                                        <label htmlFor={field} className='label'>{fieldLabel(field)} </label>
+                                                        <div className='select is-rounded'>
+                                                            <select
+                                                                id={field}
+                                                                name={field}
 
-                                            <label htmlFor={field} className='label'>{fieldLabel(field)} </label>
-                                            <div className='select is-multiple'>
-                                                <select
-                                                    multiple // source : w3school
-                                                    id={field}
-                                                    name={field}
+                                                                value={props.formFields[field]}
+                                                                onChange={event =>
+                                                                    props.setFormFields({
+                                                                        ...props.formFields,
+                                                                        [field]: event.target.value
+                                                                    })
+                                                                }
+                                                            >
+                                                                <option value="C">Critical</option>
+                                                                <option value="H">High</option>
+                                                                <option value="M">Medium</option>
+                                                                <option value="L">Low</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
 
-                                                    value={props.formFields[field] || []}
-                                                    onChange={event => {
-                                                        const selectedDocuments = []
-                                                        for (let i = 0; i < event.target.selectedOptions.length; i++) {
-                                                            selectedDocuments.push(event.target.selectedOptions[i].value)
-                                                        }
-                                                        props.setFormFields({
-                                                            ...props.formFields,
-                                                            [field]: selectedDocuments
-                                                        })
-                                                    }
-                                                    }
-                                                >
-                                                    {documents.length ? (
-                                                        documents.map(document => (
-                                                            <option key={document.id} value={document.id}>
-                                                                {document.name}
-                                                            </option>
-                                                        ))
-                                                    ) : (
-                                                        <option disabled>No Documents Found</option>
-                                                    )}
+                                                )
+                                            }
+                                            if (field === 'documents') {
 
-                                                </select>
-                                            </div>
-                                        </div>
+                                                return (
 
-                                    
-                                )
-                            }
-                            return (
-                                
-                                    <div className='field' key={field}>
+                                                    <div className='field' key={field}>
 
-                                        <label htmlFor={field} className='label'>{fieldLabel(field)} </label>
-                                        <div className='controls'>
-                                            <input
-                                                className='input is-normal'
-                                                id={field}
-                                                name={field}// as our django app expects!
-                                                type={type}
-                                                required
-                                                value={props.formFields[field]}
-                                                onChange={event =>
-                                                    props.setFormFields({
-                                                        ...props.formFields,
-                                                        [field]: event.target.value
-                                                    })
-                                                }
-                                            />
-                                        </div>
+                                                        <label htmlFor={field} className='label'>{fieldLabel(field)} </label>
+                                                        <div className='select is-multiple'>
+                                                            <select
+                                                                multiple // source : w3school
+                                                                id={field}
+                                                                name={field}
+
+                                                                value={props.formFields[field] || []}
+                                                                onChange={event => {
+                                                                    const selectedDocuments = []
+                                                                    for (let i = 0; i < event.target.selectedOptions.length; i++) {
+                                                                        selectedDocuments.push(event.target.selectedOptions[i].value)
+                                                                    }
+                                                                    props.setFormFields({
+                                                                        ...props.formFields,
+                                                                        [field]: selectedDocuments
+                                                                    })
+                                                                }
+                                                                }
+                                                            >
+                                                                {documents.length ? (
+                                                                    documents.map(document => (
+                                                                        <option key={document.id} value={document.id}>
+                                                                            {document.name}
+                                                                        </option>
+                                                                    ))
+                                                                ) : (
+                                                                    <option disabled>No Documents Found</option>
+                                                                )}
+
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+
+                                                )
+                                            }
+                                            return (
+
+                                                <div className='field' key={field}>
+
+                                                    <label htmlFor={field} className='label'>{fieldLabel(field)} </label>
+                                                    <div className='controls'>
+                                                        <input
+                                                            className='input is-normal'
+                                                            id={field}
+                                                            name={field}// as our django app expects!
+                                                            type={type}
+                                                            required
+                                                            value={props.formFields[field]}
+                                                            onChange={event =>
+                                                                props.setFormFields({
+                                                                    ...props.formFields,
+                                                                    [field]: event.target.value
+                                                                })
+                                                            }
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                            )
+                                        }
+                                        )
+                                    }
+
+                                    <div className='has-text-right'>
+                                        <button className="button is-success" type='submit'>
+                                            <span>{props.submitButtonText}</span>
+
+                                            <span className="icon is-normal">
+                                                <i className="fas fa-check"></i>
+                                            </span>
+                                        </button>
+
+
+                                        <button className="button is-warning" type='button' style={{ marginLeft: '10px' }} onClick={handelCancel}>
+                                            <span>Cancel</span>
+                                            <span className="icon is-normal">
+                                                <i className="fas fa-times"></i>
+                                            </span>
+                                        </button>
                                     </div>
-                                
-                            )
-                        }
-                        )
-                    }
+                                </div>
+                            </section>
+                        </div>
 
-
-                    <button className="button is-success" type='submit'>
-                        <span className="icon is-normal">
-                            <i className="fas fa-check"></i>
-                        </span>
-                        <span>{props.submitButtonText}</span>
-                    </button>
-
-
-                    <button className="button is-warning" type='button' onClick={handelCancel}>
-                        <span>Cancel</span>
-                        <span className="icon is-normal">
-                            <i className="fas fa-times"></i>
-                        </span>
-                    </button>
-
-                </form>
-                
-            )}
-            <ToastContainer />
+                    </form>
+                )}
+                <ToastContainer />
+            </div>
 
         </div>
     )
