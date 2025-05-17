@@ -18,8 +18,8 @@ function DocumentForm(props) {
     return (
         <div>
             <div className=' container is-widescreen'>
-                <section class="hero is-large " style={{ backgroundColor: '#FAF2F2' }}>
-                    <div class="hero-body">
+                <section className="hero is-large " style={{ backgroundColor: '#FAF2F2' }}>
+                    <div className="hero-body">
 
                         <h3 className='title is-2'>{props.formTitle}</h3>
                         <form onSubmit={props.handleSubmit}>

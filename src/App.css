@@ -17,3 +17,17 @@
     color: rgb(249, 135, 131) !important;
 
 }
+
+
+.bebas-neue-font{
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 8em !important;
+    margin-bottom: 0px ;
+    padding-bottom: 0px;
+
+}
+
+
+.large{
+    font-size: 2em;
+}

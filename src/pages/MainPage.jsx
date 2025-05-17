@@ -5,10 +5,10 @@ function MainPage() {
         <>
 
             <div className=' container is-widescreen'>
-                <section class="hero is-large " style={{ backgroundColor: '#FAF2F2' }}>
-                    <div class="hero-body">
-                        <p class="title is-1">Track IT</p>
-                        <p class="subtitle">All in One Place</p>
+                <section className="hero is-large " style={{ backgroundColor: '#FAF2F2' }}>
+                    <div className="hero-body">
+                        <p className="title is-1 bebas-neue-font">Track IT</p>
+                        <p className="subtitle large">All in One Place</p>
                     </div>
                 </section>
 
