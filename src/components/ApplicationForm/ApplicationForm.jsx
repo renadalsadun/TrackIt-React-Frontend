@@ -77,7 +77,7 @@ function ApplicationForm(props) {
         <div className='container'>
             <div className="block">
 
-                <h3 className='title is-3'>{props.formTitle}</h3>
+                <h3 className='title is-3 has-text-black'>{props.formTitle}</h3>
 
 
                 {loading ? (<p> Loading ...</p>) : (
@@ -95,12 +95,12 @@ function ApplicationForm(props) {
 
                                                     <div className='field'>
 
-                                                        <label htmlFor={field} className='label'>{fieldLabel(field)} </label>
+                                                        <label htmlFor={field} className='label has-text-black'>{fieldLabel(field)} </label>
                                                         <div className='select is-rounded'>
                                                             <select
                                                                 id={field}
                                                                 name={field}
-
+                                                                className='has-background-white has-text-black'
                                                                 value={props.formFields[field]}
                                                                 onChange={event =>
                                                                     props.setFormFields({
@@ -125,13 +125,13 @@ function ApplicationForm(props) {
 
                                                     <div className='field' key={field}>
 
-                                                        <label htmlFor={field} className='label'>{fieldLabel(field)} </label>
+                                                        <label htmlFor={field} className='label has-text-black'>{fieldLabel(field)} </label>
                                                         <div className='select is-multiple'>
                                                             <select
                                                                 multiple // source : w3school
                                                                 id={field}
                                                                 name={field}
-
+                                                                className='has-background-white has-text-black'
                                                                 value={props.formFields[field] || []}
                                                                 onChange={event => {
                                                                     const selectedDocuments = []
@@ -166,10 +166,10 @@ function ApplicationForm(props) {
 
                                                 <div className='field' key={field}>
 
-                                                    <label htmlFor={field} className='label'>{fieldLabel(field)} </label>
+                                                    <label htmlFor={field} className='label has-text-black'>{fieldLabel(field)} </label>
                                                     <div className='controls'>
                                                         <input
-                                                            className='input is-normal'
+                                                            className='input is-normal has-text-black'
                                                             id={field}
                                                             name={field}// as our django app expects!
                                                             type={type}

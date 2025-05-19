@@ -45,13 +45,13 @@ function TrackerList() {
 
 
     if (loading) {
-        return <p>Loading trackers...</p>
+        return <p className='has-text-black'>Loading trackers...</p>
     }
 
     if (trackers.length === 0) {
         return (
             <div className='has-text-centered'>
-                <h2 className='title is-3'> No Trackers Found</h2>
+                <h2 className='title is-3 has-text-black'> No Trackers Found</h2>
                 <p><a href="/trackers/add">Add Some</a></p>
             </div>
         )
@@ -65,7 +65,7 @@ function TrackerList() {
     }
     return (
         <div className="container has-text-left">
-            <h2 className='title is-1 has-text-left	mb-6'>Trackers</h2>
+            <h2 className='title is-1 has-text-left	mb-6 has-text-black'>Trackers</h2>
             <div className='columns is-multiline is-centered'>
                 {trackers.map(tracker => {
                     return (

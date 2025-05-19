@@ -43,12 +43,12 @@ function Login() {
             marginTop: '10vw', maxWidth: '40vw', minHeight: '60vh',
             backgroundColor: '#FAF2F2', padding: '70px'
         }}>
-            <h1 className=' title is-1'>Login</h1>
-            <form className='box py-6' onSubmit={handleSubmit}
+            <h1 className=' title is-1 has-text-black'>Login</h1>
+            <form className='box py-6 has-background-white' onSubmit={handleSubmit}
             >
 
                 <div className='field'>
-                    <label htmlFor='username' className='label'>Username</label>
+                    <label htmlFor='username' className='label has-text-black'>Username</label>
                     <div className="control">
                         <input
                             className='input'
@@ -62,7 +62,7 @@ function Login() {
                     </div>
                 </div>
                 <div className='field'>
-                    <label htmlFor='password' className='label'>Password</label>
+                    <label htmlFor='password' className='label has-text-black'>Password</label>
                     <div className="control">
                         <input
                             className='input'
@@ -76,7 +76,7 @@ function Login() {
                     </div>
                 </div>
 
-                <button class='button is-primary' type="submit">Login</button>
+                <button className='button is-primary' type="submit">Login</button>
                 {error && <p>{error}</p>}
             </form>
         </div>

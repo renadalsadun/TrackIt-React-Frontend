@@ -107,8 +107,8 @@ function TrackerDetail() {
                 ?
                 (//has-text-left
                     <>
-                        <h2 className='title is-2' style={{ marginLeft: '20px' }}>{`${tracker.name} Tracker`}</h2>
-                        <p style={{ marginLeft: '25px', marginBottom: '20px' }}>created on:  {tracker.date_created.slice(0, 10)}</p>
+                        <h2 className='title is-2 has-text-black' style={{ marginLeft: '20px' }}>{`${tracker.name} Tracker`}</h2>
+                        <p className= 'has-text-black'style={{ marginLeft: '25px', marginBottom: '20px' }}>created on:  {tracker.date_created.slice(0, 10)}</p>
                         {/* tracker applications */}
                         <ApplicationList
                             id={id}

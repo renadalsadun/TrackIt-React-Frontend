@@ -21,12 +21,12 @@ function DocumentForm(props) {
                 <section className="hero is-large " style={{ backgroundColor: '#FAF2F2' }}>
                     <div className="hero-body">
 
-                        <h3 className='title is-2'>{props.formTitle}</h3>
+                        <h3 className='title is-2 has-text-black'>{props.formTitle}</h3>
                         <form onSubmit={props.handleSubmit}>
                             <div>
-                                <label htmlFor='name' className='title is-4' >Name: </label>
+                                <label htmlFor='name' className='title is-4 has-text-black' >Name: </label>
                                 <input
-                                    className='input '
+                                    className='input is-normal has-text-black'
                                     id='name'
                                     name='name'// as our django app expects!
                                     type='text'
@@ -37,7 +37,7 @@ function DocumentForm(props) {
                                 />
                             </div>
 
-                            <label htmlFor='document_url' className='title is-4 mt-5 ' >Document:</label>
+                            <label htmlFor='document_url' className='title is-4 mt-5 has-text-black' >Document:</label>
                             <div className='file  is-normal'>
                                 <label className='file-label' htmlFor='document_url'>
                                     <input

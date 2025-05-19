@@ -43,7 +43,7 @@ function TrackerForm(props) {
         <div className='container'>
 
             <div className="block">
-                <h1 className='title is-3'>{props.formTitle}</h1>
+                <h1 className='title is-3 has-text-black'>{props.formTitle}</h1>
             </div>
             <div className=' container is-widescreen'>
                 <section class="hero is-large " style={{ backgroundColor: '#FAF2F2' }}>
@@ -51,7 +51,7 @@ function TrackerForm(props) {
 
                         <form onSubmit={handleFormSubmit}>
                             <div className='field'>
-                                <label htmlFor='name' className='label'>Name: </label>
+                                <label htmlFor='name' className='label has-text-black'>Name: </label>
                                 <div className="control">
 
                                     <input
@@ -75,7 +75,7 @@ function TrackerForm(props) {
                                     variant="standard"
                                     sx={{ mb: 3 }}
                                 >
-                                    <label htmlFor='fields' className='label'>Fields:</label>
+                                    <label htmlFor='fields' className='label has-text-black'>Fields:</label>
                                     {error ? (
                                         <FormHelperText> Pick at least 2 fields </FormHelperText>
                                     ) : (<p></p>)}

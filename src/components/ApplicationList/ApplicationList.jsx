@@ -185,18 +185,18 @@ function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting
     }
 
     if (filteredApplications.length === 0) {
-        return <p className='title is-2 '>No applications found</p>
+        return <p className='title is-2 has-text-black '>No applications found</p>
     }
 
     return (
         <div className='container'>
-            <h2 className='title is-3' >Applications</h2>
-            <table className='table is-hoverable is-fullwidth'>
+            <h2 className='title is-3 has-text-black' >Applications</h2>
+            <table className='table is-hoverable is-fullwidth has-background-white'>
                 <thead>
                     <tr>
                         {props.fields.map((field) => {
                             return (
-                                <th>{fieldLabel(field)}</th>
+                                <th className='has-text-black'>{fieldLabel(field)}</th>
                             )
                         })}
                         <th></th>
@@ -210,7 +210,7 @@ function ApplicationList(props) { // challenge 2 😾 use effect isn't effecting
 
                                 {props.fields.map((field) => {
                                     return (
-                                        <td key={field}>{application[field]}</td>
+                                        <td key={field} className='has-text-black'>{application[field]}</td>
                                     )
                                 })}
                                 <td>

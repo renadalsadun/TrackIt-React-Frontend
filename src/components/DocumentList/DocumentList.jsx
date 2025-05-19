@@ -73,7 +73,7 @@ function DocumentList() {
     return (
 
         <div className='container has-text-centered '>
-            <h2 className='title is-1 has-text-left	mb-6'>Documents</h2>
+            <h2 className='title is-1 has-text-left	mb-6 has-text-black'>Documents</h2>
             {error ? (<p className='title is-3'>{error}</p>) : (<p></p>)}
             <ul>
                 {documents.map(document => {
@@ -82,7 +82,7 @@ function DocumentList() {
                             <div className='is-flex is-justify-content-space-between is-align-items-center'>
 
                                 {/* (noopener,noreferrer) source : stack overflow */}
-                                <a href={document.document_url} target='_blank' rel='noopener,noreferrer' className='title is-4 	' >
+                                <a href={document.document_url} target='_blank' rel='noopener,noreferrer' className='title is-4 has-text-black' >
                                     {document.name}
                                 </a>
 
