@@ -20,7 +20,13 @@ function Signup() {
                 { username, email, password }
             )
             console.log(response.data)
-            setTokens(response.data)
+
+            const loginResponse = await axios.post(`${import.meta.env.VITE_BASE_URL}token/`, {
+                username,
+                password,
+            })
+
+            setTokens(loginResponse.data)
             navigate('/home')
 
         } catch (err) {
