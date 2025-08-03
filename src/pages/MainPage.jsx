@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate, Link } from "react-router";
 
 function MainPage() {
     return (
@@ -15,7 +16,7 @@ function MainPage() {
                 <h1 className='title is-1 is-spaced has-text-black	'>Track & Organize Anything!</h1>
             </div>
             <div className=' container is-widescreen'>
-                <p className='has-text-black'><a href='http://localhost:5173/signup'>Sign Up</a> to Start Tracking</p>
+                <p className='has-text-black'><Link to='/signup'>Sign Up</Link> to Start Tracking</p>
             </div>
         </div>
     )
